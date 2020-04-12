@@ -33,19 +33,16 @@ class MyCylinder extends CGFobject {
             // console.log("Theta: " + theta);
 
             //--- Vertices coordinates
-            var x = Math.cos(theta); // ca
-            // var y = 0;
-            var z = Math.sin(theta); // sa
-            // console.log("Longitude: " + longitude);
+            var x = - Math.cos(theta);
+            var z = + Math.sin(theta);
+
             console.log("x: " + x);
-            // console.log("y: " + y);
             console.log("z: " + z);
             console.log("...");
             this.vertices.push(x, 0, z);
             this.vertices.push(x, 1, z);
             
             //--- Indices
-            // this.indices = [0,1,2,2,3,4];
             if (longitude != 0){
                 this.indices.push((longitude*2), (longitude*2+1), (longitude*2-1));
                 this.indices.push((longitude*2), (2*longitude-1), (2*longitude-2));
