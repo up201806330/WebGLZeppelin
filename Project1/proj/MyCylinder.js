@@ -74,7 +74,7 @@ class MyCylinder extends CGFobject {
 
 
     updateBuffers(complexity){ 
-        this.longDivs = Math.round(complexity);
+        this.longDivs = complexity;
         this.initBuffers();
     }
 }

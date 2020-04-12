@@ -26,7 +26,7 @@ class MyInterface extends CGFinterface {
         this.gui.add(this.scene, 'displayCylinder').name('Display Cylinder');
 
         // Slider element in GUI for number of sides of cylinder
-        this.gui.add(this.scene, 'numberOfSides', 4, 12).name('Number of sides').onChange(this.scene.updateNumberSides.bind(this.scene));
+        this.gui.add(this.scene, 'numberOfSides', 4, 12, 1).name('Number of sides').onChange(this.scene.updateNumberSides.bind(this.scene));
 
         return true;
     }
