@@ -28,6 +28,9 @@ class MyInterface extends CGFinterface {
         // Slider element in GUI for number of sides of cylinder
         this.gui.add(this.scene, 'numberOfSides', 4, 12, 1).name('Number of sides').onChange(this.scene.updateNumberSides.bind(this.scene));
 
+        // Checkox element in GUI to toggle normals' display
+        this.gui.add(this.scene, 'displayNormals').name("Display normals");
+
         return true;
     }
 }
