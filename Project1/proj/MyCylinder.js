@@ -1,8 +1,9 @@
 class MyCylinder extends CGFobject {
 
-    constructor(scene, slices) {
+    constructor(scene, slices, radius) {
         super(scene);
         this.longDivs = slices;
+        this.radius = radius;
     
         this.initBuffers();
     }
@@ -26,13 +27,14 @@ class MyCylinder extends CGFobject {
         console.log("2*Pi: " + 2*Math.PI);
 
         for (let longitude = 0; longitude <= this.longDivs; longitude++) {
-            
+
             console.log("Theta: " + theta);
 
             //--- Vertices coordinates
             var x = Math.round(Math.cos(theta));
             var y = 0;
             var z = Math.round(Math.sin(-theta));
+            console.log("Longitude: " + longitude);
             console.log("x: " + x);
             console.log("y: " + y);
             console.log("z: " + z);
