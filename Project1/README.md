@@ -1,5 +1,7 @@
 <h1>Project Status</h1>
 
+(Check out the "Projects" tab as well)
+
 <h2>Part A</h2>
 
 <h3>1. Creation of the base objects</h3>
