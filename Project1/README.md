@@ -14,7 +14,7 @@
 - [x] Vertices 
 - [x] Indexes
 - [x] Normals
-- [ ] Texture
+- [x] Texture
 
 <h4>1.2 MySphere - Sphere</h4>
 

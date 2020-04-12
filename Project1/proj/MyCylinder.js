@@ -14,10 +14,12 @@ class MyCylinder extends CGFobject {
         this.vertices = [];
         this.indices = [];
         this.normals = [];
-        // this.texCoords = [];
+        this.texCoords = [];
         
         var theta = 0;
         var thetaInc = (2 * Math.PI) / this.longDivs;
+        var tex = 0;
+        var texInc = 1 / this.longDivs; // dividing the 1 ("whole dimension") by the number of sides it'll need to cover
 
         // console.log("Pi/6   : " + Math.PI/6);
         // console.log("Pi/3   : " + Math.PI/3);
@@ -45,18 +47,24 @@ class MyCylinder extends CGFobject {
             //--- Indices
             if (longitude != 0){
                 this.indices.push((longitude*2), (longitude*2+1), (longitude*2-1));
-                this.indices.push((longitude*2), (2*longitude-1), (2*longitude-2));
+                this.indices.push((longitude*2-1), (longitude*2-2), (longitude*2));
+                // this.indices.push((longitude*2), (2*longitude-1), (2*longitude-2)); // -> 2nd way it works for thw last one (I think)
             }
 
             //--- Normals
             this.normals.push(x, 0, z);
             this.normals.push(x, 0, z);
+            // DOUBT é suposto as normais estarem paralelas
+            // às bases (que não existem) do cilindro?
 
             //--- Texture Coordinates
-
+            // DOUBT é suposto ser uma coisa deste género?
+            this.texCoords.push(tex, 1);
+            this.texCoords.push(tex, 0);
 
             
             theta += thetaInc;
+            tex += texInc;
         }
 
         // console.log("Size of vertices array: " + this.vertices.length);
