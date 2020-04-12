@@ -19,11 +19,14 @@ class MyInterface extends CGFinterface {
         // Checkbox element in GUI
         this.gui.add(this.scene, 'displayAxis').name('Display Axis');
 
-        // Checkbox for Sphere Displaying
+        // Checkbox element in GUI for Sphere Displaying
         this.gui.add(this.scene, 'displaySphere').name('Display Sphere');
 
-        // Checkbox for Cylinder Displaying
+        // Checkbox element in GUI for Cylinder Displaying
         this.gui.add(this.scene, 'displayCylinder').name('Display Cylinder');
+
+        // Slider element in GUI for number of sides of cylinder
+        this.gui.add(this.scene, 'numberOfSides', 4, 12).name('Number of sides').onChange(this.scene.updateNumberSides.bind(this.scene));
 
         return true;
     }

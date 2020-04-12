@@ -32,6 +32,7 @@ class MyScene extends CGFscene {
         this.displayAxis = true;
         this.displaySphere = false;
         this.displayCylinder = true;
+        this.numberOfSides = 4;
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -51,6 +52,10 @@ class MyScene extends CGFscene {
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
         //To be done...
+    }
+
+    updateNumberSides() {
+        this.cylinder.updateBuffers(this.numberOfSides);
     }
 
     display() {
