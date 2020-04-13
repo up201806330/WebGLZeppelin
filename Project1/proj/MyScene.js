@@ -38,6 +38,7 @@ class MyScene extends CGFscene {
         this.numberOfSides = 5;
         this.displayNormals = false;
         this.displayVehicle = true;
+        this.scaleFactor = 1;
         // this.selectedTexture = -1;
 
         this.cylinder = new MyCylinder(this, this.numberOfSides, 1);
@@ -101,6 +102,13 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
 
+        var sca = [this.scaleFactor, 0.0, 0.0, 0.0,
+            0.0, this.scaleFactor, 0.0, 0.0,
+            0.0, 0.0, this.scaleFactor, 0.0,
+            0.0, 0.0, 0.0, 1.0
+        ];
+
+        
         //This sphere does not have defined texture coordinates
         // (Now it does! :) )
         if (this.displaySphere) {
@@ -113,7 +121,10 @@ class MyScene extends CGFscene {
 
         if (this.displayCylinder) this.cylinder.display();
 
-        if (this.displayVehicle) this.vehicle.display();
+        if (this.displayVehicle) {
+            this.multMatrix(sca); // Vehicle can be scaled with the slider
+            this.vehicle.display();
+        }
 
         // ---- END Primitive drawing section
     }

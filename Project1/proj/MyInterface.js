@@ -34,6 +34,9 @@ class MyInterface extends CGFinterface {
         // Dropdown for textures
         // this.gui.add(this.scene, 'selectedTexture', this.scene.textureIds).name('Selected Texture').onChange(this.scene.updateAppliedTexture.bind(this.scene));
 
+        // Slider element in GUI for the vehicle's scaleFactor
+        this.gui.add(this.scene, 'scaleFactor', 0.5, 3).name('Scale Factor');
+
         return true;
     }
 }
