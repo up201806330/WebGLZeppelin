@@ -18,7 +18,7 @@
 
 <h4>1.2 MySphere - Sphere</h4>
 
-- [ ] Add Texture
+- [x] Add Texture
 
 <h4>1.3 Cube Map - Creation of a cubemap for the ambient</h4>
 
