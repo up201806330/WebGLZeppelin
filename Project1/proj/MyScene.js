@@ -23,36 +23,49 @@ class MyScene extends CGFscene {
         
         this.enableTextures(true);
 
+
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        this.incompleteSphere = new MySphere(this, 16, 8);
-        // this.cylinder = new MyCylinder(this, 4, 1);
+        this.sphere = new MySphere(this, 16, 8);
+        // this.cylinder = new MyCylinder(this, 4, 1);  <-- declaration a bit ahead after the numberOfSides var
 
         //Objects connected to MyInterface
         this.displayAxis = true;
-        this.displaySphere = false;
-        this.displayCylinder = true;
+        this.displaySphere = true;
+        this.displayCylinder = false;
         this.numberOfSides = 5;
         this.displayNormals = false;
         // this.selectedTexture = -1;
 
         this.cylinder = new MyCylinder(this, this.numberOfSides, 1);
+
+        this.sphereMaterial = new CGFappearance(this);
+        this.sphereMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+        this.sphereMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.sphereMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+        this.sphereMaterial.setShininess(10.0);
+        this.sphereMaterial.loadTexture('images/earth.jpg');
+        // this.sphereMaterial.setTextureWrap( 'REPEAT','CLAMP_TO_EDGE'); <-- dont think this is needed in this case maybe (found it in TP04 - MyScene)
     }
+
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
         this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
         this.lights[0].enable();
         this.lights[0].update();
     }
+
     initCameras() {
         this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
     }
+
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
         this.setDiffuse(0.2, 0.4, 0.8, 1.0);
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
     }
+    
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
         //To be done...
@@ -86,7 +99,11 @@ class MyScene extends CGFscene {
         // ---- BEGIN Primitive drawing section
 
         //This sphere does not have defined texture coordinates
-        if (this.displaySphere) this.incompleteSphere.display();
+        // (Now it does! :) )
+        if (this.displaySphere) {
+            this.sphereMaterial.apply();
+            this.sphere.display();
+        }
 
         if (this.displayNormals)
             this.cylinder.enableNormalViz();
