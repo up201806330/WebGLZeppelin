@@ -28,13 +28,16 @@ class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.sphere = new MySphere(this, 16, 8);
         // this.cylinder = new MyCylinder(this, 4, 1);  <-- declaration a bit ahead after the numberOfSides var
+        this.vehicle = new MyVehicle(this);
+
 
         //Objects connected to MyInterface
         this.displayAxis = true;
-        this.displaySphere = true;
+        this.displaySphere = false;
         this.displayCylinder = false;
         this.numberOfSides = 5;
         this.displayNormals = false;
+        this.displayVehicle = true;
         // this.selectedTexture = -1;
 
         this.cylinder = new MyCylinder(this, this.numberOfSides, 1);
@@ -105,12 +108,12 @@ class MyScene extends CGFscene {
             this.sphere.display();
         }
 
-        if (this.displayNormals)
-            this.cylinder.enableNormalViz();
-        else
-            this.cylinder.disableNormalViz();
+        if (this.displayNormals) this.cylinder.enableNormalViz();
+        else this.cylinder.disableNormalViz();
 
         if (this.displayCylinder) this.cylinder.display();
+
+        if (this.displayVehicle) this.vehicle.display();
 
         // ---- END Primitive drawing section
     }
