@@ -34,6 +34,7 @@ class MyScene extends CGFscene {
         this.displayCylinder = true;
         this.numberOfSides = 5;
         this.displayNormals = false;
+        // this.selectedTexture = -1;
 
         this.cylinder = new MyCylinder(this, this.numberOfSides, 1);
     }
@@ -60,6 +61,10 @@ class MyScene extends CGFscene {
     updateNumberSides() {
         this.cylinder.updateBuffers(this.numberOfSides);
     }
+
+    // updateAppliedTexture() {
+    //     this.sphereMat.setTexture(this.textures[this.selectedTexture]);
+    // }
 
     display() {
         // ---- BEGIN Background, camera and axis setup
