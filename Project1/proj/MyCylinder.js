@@ -38,9 +38,9 @@ class MyCylinder extends CGFobject {
             var x = - Math.cos(theta);
             var z = + Math.sin(theta);
 
-            console.log("x: " + x);
-            console.log("z: " + z);
-            console.log("...");
+            // console.log("x: " + x);
+            // console.log("z: " + z);
+            // console.log("...");
             this.vertices.push(x, 0, z);
             this.vertices.push(x, 1, z);
             
