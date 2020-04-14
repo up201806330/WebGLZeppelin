@@ -38,6 +38,7 @@ class MyScene extends CGFscene {
         this.numberOfSides = 5;
         this.displayNormals = false;
         this.displayVehicle = true;
+        this.displayCubeMap = true;
         this.scaleFactor = 1;
         // this.selectedTexture = -1;
 
@@ -50,6 +51,8 @@ class MyScene extends CGFscene {
         this.sphereMaterial.setShininess(10.0);
         this.sphereMaterial.loadTexture('images/earth.jpg');
         // this.sphereMaterial.setTextureWrap( 'REPEAT','CLAMP_TO_EDGE'); <-- dont think this is needed in this case maybe (found it in TP04 - MyScene)
+
+        this.cubeMap = new MyUnitCubeQuad(this);
     }
 
     initLights() {
@@ -108,9 +111,11 @@ class MyScene extends CGFscene {
             0.0, 0.0, 0.0, 1.0
         ];
 
-        
-        //This sphere does not have defined texture coordinates
-        // (Now it does! :) )
+        if (this.displayCubeMap) {
+            this.cubeMap.display();
+        }
+
+
         if (this.displaySphere) {
             this.sphereMaterial.apply();
             this.sphere.display();
@@ -125,6 +130,8 @@ class MyScene extends CGFscene {
             this.multMatrix(sca); // Vehicle can be scaled with the slider
             this.vehicle.display();
         }
+
+        
 
         // ---- END Primitive drawing section
     }
