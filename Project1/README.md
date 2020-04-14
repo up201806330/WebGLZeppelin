@@ -35,8 +35,8 @@
 
 <h4>2.1 Vehicle Control via Keyboard</h4>
 
-- [ ] 1.
-- [ ] 2.
+- [x] 1.
+- [x] 2.
 - [ ] 3.
 - [ ] 4.
 
