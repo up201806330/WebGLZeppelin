@@ -38,7 +38,7 @@
 - [x] 1. Add to MyInterface
 - [x] 2. Add/Change in MyScene
 - [x] 3. Vehicle's Position, Orientation and speed and functions turn(), accelerate() and reset()
-- [ ] 4.
+- [x] 4. Movement using 'W', 'S', 'A', 'D' and 'R'
 
 <h4>2.2 Additional Interface Controls</h4>
 
