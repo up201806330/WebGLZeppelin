@@ -47,4 +47,46 @@
 - [x] 3. slider in GUI named scaleFactor (between 0.5 and 3) that allow scaling of the vehicle to facilitate animation observing
 
 <h2>Part B</h2>
-Nothing at the moment.
+
+<h3>3. MyVehicle - Dirigivel (Airship)</h3>
+
+<h4>3.1 Airship Modelation</h4>
+
+- [ ] Make Airship
+- [ ] Center of the Ellipsoid in (0, 10, 0)
+- [ ] Main body with 2 units of length and 1 unit of height
+- [ ] Textures on all objects of the Airship
+- [ ] Materials on all objects of the Airship
+- [ ] Submit
+
+<h4>3.2 Airship's aditional animations</h4>
+
+- [ ] 1. Propellers' animation: rotation speed -> airship speed
+- [ ] 2. Vertical "steering wheels" should incline to the left or right when the aircraft changes direction. (see the pdf for a more detailed description)
+- [ ] 3. Autopilot (see the pdf for a more detailed description)
+
+
+<h3>4. Terrain</h3>
+
+- [ ] ...
+
+<h3>5. Supply Drop</h3>
+
+<h4>5.1 Supply Drop Creation</h4>
+
+- [ ] ...
+
+<h4>5.2 Launch Control</h4>
+
+- [ ] ...
+
+
+<h3>6. Shaders</h3>
+
+<h4>6.1 Flag</h4>
+
+- [ ] ...
+
+<h4>6.2 Supply Drop Delivery Counter</h4>
+
+- [ ] ...
