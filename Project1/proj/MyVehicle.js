@@ -42,8 +42,11 @@ class MyVehicle extends CGFobject {
         this.horizAngle += val;
     }
 
+    // DOUBT é suposto que quando se carrega por exemplo no W que a vel volte a 0
+    // e comece a decrescer a partir daí ou começa a decrescer a partir de
+    // onde "parou" quando se estava a carregar no S ?
     accelerate(val) {
-        this.speed += val;
+        this.speed += val * 0.08;
     }
 
     reset() {
