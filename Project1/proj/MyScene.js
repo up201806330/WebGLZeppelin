@@ -40,6 +40,7 @@ class MyScene extends CGFscene {
         this.displayVehicle = true;
         this.displayCubeMap = true;
         this.scaleFactor = 1;
+        this.speedFactor = 1;
         // this.selectedTexture = -1;
 
         this.cylinder = new MyCylinder(this, this.numberOfSides, 1);
@@ -95,13 +96,13 @@ class MyScene extends CGFscene {
         // Check for key codes e.g. in https://keycode.info/
         if (this.gui.isKeyPressed("KeyW")) {
             text += " W ";
-            this.vehicle.accelerate(1);
+            this.vehicle.accelerate(this.speedFactor);
             keysPressed = true;
         }
 
         if (this.gui.isKeyPressed("KeyS")) {
             text += " S ";
-            this.vehicle.accelerate(-1);
+            this.vehicle.accelerate(-this.speedFactor);
             keysPressed = true;
         }
 

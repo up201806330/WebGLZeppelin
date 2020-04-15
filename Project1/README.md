@@ -43,7 +43,7 @@
 <h4>2.2 Additional Interface Controls</h4>
 
 - [ ] 1. List Box where appear the different textures of the available envolving landscapes so that the user can change the texture of the cube map in runtime (similarly to the texture in TP04)
-- [ ] 2. slider in GUI named speedFactor (between 0.1 and 3) that multiplies the value of the displacement's speed each time the "W" or the "S" key is pressed
+- [x] 2. slider in GUI named speedFactor (between 0.1 and 3) that multiplies the value of the displacement's speed each time the "W" or the "S" key is pressed
 - [x] 3. slider in GUI named scaleFactor (between 0.5 and 3) that allow scaling of the vehicle to facilitate animation observing
 
 <h2>Part B</h2>
