@@ -35,9 +35,9 @@
 
 <h4>2.1 Vehicle Control via Keyboard</h4>
 
-- [x] 1.
-- [x] 2.
-- [ ] 3.
+- [x] 1. Add to MyInterface
+- [x] 2. Add/Change in MyScene
+- [x] 3. Vehicle's Position, Orientation and speed and functions turn(), accelerate() and reset()
 - [ ] 4.
 
 <h4>2.2 Additional Interface Controls</h4>
