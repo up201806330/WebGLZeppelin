@@ -11,13 +11,42 @@ class MyUnitCubeQuad extends CGFobject {
         this.initCubeMaterials();
     }
 
+    updateAppliedTexture(){
+        this.materialBottom.setTexture(this.bottoms[this.scene.selectedTexture]);
+        this.materialTop.setTexture(this.tops[this.scene.selectedTexture]);
+        this.materialSideN.setTexture(this.fronts[this.scene.selectedTexture]);
+        this.materialSideS.setTexture(this.backs[this.scene.selectedTexture]);
+        this.materialSideE.setTexture(this.rights[this.scene.selectedTexture]);
+        this.materialSideW.setTexture(this.backs[this.scene.selectedTexture]);
+    }
+
     initCubeMaterials(){
+        this.bottom1    = new CGFtexture(this.scene, 'images/split_cubemap/bottom.png');
+        this.bottom2    = new CGFtexture(this.scene, 'images/second_tex/bottom.png');
+        this.top1       = new CGFtexture(this.scene, 'images/split_cubemap/top.png');
+        this.top2       = new CGFtexture(this.scene, 'images/second_tex/top.png');
+        this.left1      = new CGFtexture(this.scene, 'images/split_cubemap/left.png');
+        this.left2      = new CGFtexture(this.scene, 'images/second_tex/left.png');
+        this.right1     = new CGFtexture(this.scene, 'images/split_cubemap/right.png');
+        this.right2     = new CGFtexture(this.scene, 'images/second_tex/right.png');
+        this.front1     = new CGFtexture(this.scene, 'images/split_cubemap/front.png');
+        this.front2     = new CGFtexture(this.scene, 'images/second_tex/front.png');
+        this.back1      = new CGFtexture(this.scene, 'images/split_cubemap/back.png');
+        this.back2      = new CGFtexture(this.scene, 'images/second_tex/back.png');
+
+        this.bottoms    = [this.bottom1,    this.bottom2];
+        this.tops       = [this.top1,       this.top2];
+        this.lefts      = [this.left1,      this.left2];
+        this.rights     = [this.right1,     this.right2];
+        this.fronts     = [this.front1,     this.front2];
+        this.backs      = [this.back1,      this.back2];
+
         this.materialBottom = new CGFappearance(this.scene);
         this.materialBottom.setAmbient(0.1, 0.1, 0.1, 1);
         this.materialBottom.setDiffuse(0.9, 0.9, 0.9, 1);
         this.materialBottom.setSpecular(0.1, 0.1, 0.1, 1);
         this.materialBottom.setShininess(10.0);
-        this.materialBottom.loadTexture('images/split_cubemap/bottom.png');
+        this.materialBottom.setTexture(this.bottom1);
         this.materialBottom.setTextureWrap('REPEAT', 'REPEAT');
 
         this.materialTop = new CGFappearance(this.scene);
@@ -25,7 +54,7 @@ class MyUnitCubeQuad extends CGFobject {
         this.materialTop.setDiffuse(0.9, 0.9, 0.9, 1);
         this.materialTop.setSpecular(0.1, 0.1, 0.1, 1);
         this.materialTop.setShininess(10.0);
-        this.materialTop.loadTexture('images/split_cubemap/top.png');
+        this.materialTop.setTexture(this.top1);
         this.materialTop.setTextureWrap('REPEAT', 'REPEAT');
 
         this.materialSideN = new CGFappearance(this.scene);
@@ -33,7 +62,7 @@ class MyUnitCubeQuad extends CGFobject {
         this.materialSideN.setDiffuse(0.9, 0.9, 0.9, 1);
         this.materialSideN.setSpecular(0.1, 0.1, 0.1, 1);
         this.materialSideN.setShininess(10.0);
-        this.materialSideN.loadTexture('images/split_cubemap/front.png');
+        this.materialSideN.setTexture(this.front1);
         this.materialSideN.setTextureWrap('REPEAT', 'REPEAT');
         
         this.materialSideS = new CGFappearance(this.scene);
@@ -41,7 +70,7 @@ class MyUnitCubeQuad extends CGFobject {
         this.materialSideS.setDiffuse(0.9, 0.9, 0.9, 1);
         this.materialSideS.setSpecular(0.1, 0.1, 0.1, 1);
         this.materialSideS.setShininess(10.0);
-        this.materialSideS.loadTexture('images/split_cubemap/back.png');
+        this.materialSideS.setTexture(this.back1);
         this.materialSideS.setTextureWrap('REPEAT', 'REPEAT');
         
         this.materialSideW = new CGFappearance(this.scene);
@@ -49,7 +78,7 @@ class MyUnitCubeQuad extends CGFobject {
         this.materialSideW.setDiffuse(0.9, 0.9, 0.9, 1);
         this.materialSideW.setSpecular(0.1, 0.1, 0.1, 1);
         this.materialSideW.setShininess(10.0);
-        this.materialSideW.loadTexture('images/split_cubemap/left.png');
+        this.materialSideW.setTexture(this.left1);
         this.materialSideW.setTextureWrap('REPEAT', 'REPEAT');
         
         this.materialSideE = new CGFappearance(this.scene);
@@ -57,12 +86,8 @@ class MyUnitCubeQuad extends CGFobject {
         this.materialSideE.setDiffuse(0.9, 0.9, 0.9, 1);
         this.materialSideE.setSpecular(0.1, 0.1, 0.1, 1);
         this.materialSideE.setShininess(10.0);
-        this.materialSideE.loadTexture('images/split_cubemap/right.png');
+        this.materialSideE.setTexture(this.right1);
         this.materialSideE.setTextureWrap('REPEAT', 'REPEAT');
-
-        //this.bottomMaterial = new CGFtexture(this.scene,'images/mineBottom.png');
-        //this.topMaterial = new CGFtexture(this.scene,'images/mineTop.png');
-        //this.sideMaterial = new CGFtexture(this.scene,'images/mineSide.png')
     }
 
     display() {

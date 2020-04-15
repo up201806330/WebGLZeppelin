@@ -40,7 +40,8 @@ class MyScene extends CGFscene {
         this.displayVehicle = true;
         this.displayCubeMap = true;
         this.scaleFactor = 1;
-        // this.selectedTexture = -1;
+        this.selectedTexture = 0;
+        this.textureIds = { 'Earth': 0, 'Space': 1};
 
         this.cylinder = new MyCylinder(this, this.numberOfSides, 1);
 
@@ -84,9 +85,9 @@ class MyScene extends CGFscene {
         this.cylinder.updateBuffers(this.numberOfSides);
     }
 
-    // updateAppliedTexture() {
-    //     this.sphereMat.setTexture(this.textures[this.selectedTexture]);
-    // }
+    updateAppliedTexture(){
+        this.cubeMap.updateAppliedTexture();
+    }
 
     checkKeys() {
         var text = "Keys pressed: ";
