@@ -38,7 +38,7 @@ class MyScene extends CGFscene {
         this.numberOfSides = 5;
         this.displayNormals = false;
         this.displayVehicle = true;
-        this.displayCubeMap = false;
+        this.displayCubeMap = true;
         this.scaleFactor = 3;
         this.speedFactor = 1;
         this.selectedTexture = 0;
@@ -58,6 +58,10 @@ class MyScene extends CGFscene {
     }
 
     initLights() {
+        /* Ambient light */
+        this.ambientLight = 0.3;
+        this.setGlobalAmbientLight(this.ambientLight, this.ambientLight, this.ambientLight, 1.0);
+
         this.lights[0].setPosition(15, 2, 5, 1);
         this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
         this.lights[0].enable();
