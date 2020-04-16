@@ -27,6 +27,9 @@ class MyInterface extends CGFinterface {
 
         this.gui.add(this.scene, 'displayCubeMap').name('Display Cube Map');
 
+        // Checkbox element in GUI for Vehicle Displaying
+        this.gui.add(this.scene, 'displayVehicle').name('Display Vehicle');
+
         // Slider element in GUI for number of sides of cylinder
         this.gui.add(this.scene, 'numberOfSides', 4, 12, 1).name('Number of sides').onChange(this.scene.updateNumberSides.bind(this.scene));
 
