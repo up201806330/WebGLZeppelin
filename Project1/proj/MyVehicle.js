@@ -9,16 +9,22 @@ class MyVehicle extends CGFobject {
         
         this.triangleFig = new MyTriangle(this.scene);
 
-        // this.horizAngle = 0;
-        // this.speed = 0;
-        // this.x = 0;
-        // this.y = 0;
-        // this.z = 0;
+        this.mainBody = new MySphere(this.scene, 24, 12);
+        // this.bottomBody = new MySphere(this.scene, 16, 8);
+        this.bottomBody = new MyCylinder(this.scene, 16, 8);
+        this.steering = new MyQuad(this.scene);
+
+        this.horizAngle = 0;
+        this.speed = 0;
+        this.x = 0;
+        this.y = 0;
+        this.z = 0;
         this.reset();
     }
 
     display() {
         
+        /*
         this.scene.translate(this.x, this.y, this.z);
         this.scene.rotate(this.horizAngle * Math.PI / 180.0, 0, 1, 0);
 
@@ -28,7 +34,52 @@ class MyVehicle extends CGFobject {
         this.scene.translate(0.5,0.5, 0);
 
         this.triangleFig.display();
+        */
+        
 
+        // Main Body (bigger section)
+        this.scene.pushMatrix();
+        this.scene.scale(0.5, 0.5, 1);
+        //this.scene.translate(0, 10, 0);
+        this.mainBody.display();
+        this.scene.popMatrix();
+
+        // Bottom Body
+        this.scene.pushMatrix();
+        this.scene.scale(0.2, 0.2, 0.4);
+        this.scene.translate(0, -3, 0);
+        this.bottomBody.display();
+        this.scene.popMatrix();
+
+        // Left Propeller
+        this.scene.pushMatrix();
+        this.scene.scale(0.04, 0.04, 0.11);
+        this.scene.translate(4.5, -13, -2.8);
+        this.mainBody.display();
+        this.scene.popMatrix();
+
+        // Right Propeller
+        this.scene.pushMatrix();
+        this.scene.scale(0.04, 0.04, 0.11);
+        this.scene.translate(-4.5, -13, -2.8);
+        this.mainBody.display();
+        this.scene.popMatrix();
+        
+        // Left "Steering"
+        this.scene.pushMatrix();
+        this.scene.scale(0.2, 0.2, 0.8);
+        this.scene.translate(1.5, 0, -1);
+        this.scene.rotate(-90 * Math.PI / 180, 1, 0, 0);
+        this.steering.display();
+        this.scene.popMatrix();
+
+        // Right "Steering"
+        this.scene.pushMatrix();
+        this.scene.scale(0.2, 0.2, 0.8);
+        this.scene.translate(-1.5, 0, -1);
+        this.scene.rotate(-90 * Math.PI / 180, 1, 0, 0);
+        this.steering.display();
+        this.scene.popMatrix();
     }
 
     update() {

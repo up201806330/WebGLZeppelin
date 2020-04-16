@@ -38,8 +38,8 @@ class MyScene extends CGFscene {
         this.numberOfSides = 5;
         this.displayNormals = false;
         this.displayVehicle = true;
-        this.displayCubeMap = true;
-        this.scaleFactor = 1;
+        this.displayCubeMap = false;
+        this.scaleFactor = 3;
         this.speedFactor = 1;
         this.selectedTexture = 0;
         this.textureIds = { 'Earth': 0, 'Space': 1};
@@ -165,8 +165,10 @@ class MyScene extends CGFscene {
 
 
         if (this.displaySphere) {
+            this.pushMatrix();
             this.sphereMaterial.apply();
             this.sphere.display();
+            this.popMatrix();
         }
 
         if (this.displayNormals) this.cylinder.enableNormalViz();
@@ -175,11 +177,13 @@ class MyScene extends CGFscene {
         if (this.displayCylinder) this.cylinder.display();
 
         if (this.displayVehicle) {
+            this.pushMatrix();
             this.multMatrix(sca); // Vehicle can be scaled with the slider
+            this.translate(this.vehicle.x, this.vehicle.y, this.vehicle.z);
+            this.rotate(this.vehicle.horizAngle * Math.PI / 180.0, 0, 1, 0);
             this.vehicle.display();
+            this.popMatrix();
         }
-
-        
 
         // ---- END Primitive drawing section
     }

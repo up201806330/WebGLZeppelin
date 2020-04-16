@@ -2,6 +2,13 @@
 
 (Check out the "Projects" tab as well)
 
+<h2>Things to Ask</h2>
+- [ ] Speed is supposed to "reset" when 'W' changes to 'S' and vice-versa?
+- [ ] Is it supposed to be able to move without changing the speed in a straight line?
+- [ ] We create the Textures for the Airship or go ?
+- [ ] How not to make the skybox textures nicer (better resolution)? make 8-bit textures?
+
+
 <h2>Part A</h2>
 
 <h3>1. Creation of the base objects</h3>
@@ -54,7 +61,7 @@
 
 - [ ] Make Airship
 - [ ] Center of the Ellipsoid in (0, 10, 0)
-- [ ] Main body with 2 units of length and 1 unit of height
+- [ ] Main body with 2 units of length and 1 unit of height / width
 - [ ] Textures on all objects of the Airship
 - [ ] Materials on all objects of the Airship
 - [ ] Submit
