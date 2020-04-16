@@ -17,7 +17,7 @@ class MyUnitCubeQuad extends CGFobject {
         this.materialSideN.setTexture(this.fronts[this.scene.selectedTexture]);
         this.materialSideS.setTexture(this.backs[this.scene.selectedTexture]);
         this.materialSideE.setTexture(this.rights[this.scene.selectedTexture]);
-        this.materialSideW.setTexture(this.backs[this.scene.selectedTexture]);
+        this.materialSideW.setTexture(this.lefts[this.scene.selectedTexture]);
     }
 
     initCubeMaterials(){
@@ -98,6 +98,7 @@ class MyUnitCubeQuad extends CGFobject {
         this.scene.scale(100,100,100);
         this.scene.rotate(90*Math.PI/180,1,0,0);
         this.scene.translate(0, 0, -0.5);
+        this.scene.scale(-1, -1, 1); //Fixed invert
         this.materialTop.apply();
         this.quad.display();
         this.scene.popMatrix();
@@ -108,6 +109,7 @@ class MyUnitCubeQuad extends CGFobject {
         this.scene.rotate(90*Math.PI/180,1,0,0);
         this.scene.translate(0, 0, 0.5);
         this.scene.scale(1, 1, -1);
+        this.scene.scale(-1, 1, 1); //Fixed invert
         this.materialBottom.apply();
         this.quad.display();
         this.scene.popMatrix();
