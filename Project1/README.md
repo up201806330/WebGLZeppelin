@@ -3,10 +3,13 @@
 (Check out the "Projects" tab as well)
 
 <h2>Things to Ask</h2>
-- [ ] Speed is supposed to "reset" when 'W' changes to 'S' and vice-versa?
-- [ ] Is it supposed to be able to move without changing the speed in a straight line?
+- [x] Speed is supposed to "reset" when 'W' changes to 'S' and vice-versa?
+- [x] Is it supposed to be able to move without changing the speed in a straight line?
 - [ ] We create the Textures for the Airship or go ?
 - [ ] How not to make the skybox textures nicer (better resolution)? make 8-bit textures?
+
+- [ ] Set Global Ambient light
+- [ ] Modo Clamp To Edge
 
 
 <h2>Part A</h2>
