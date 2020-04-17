@@ -15,7 +15,7 @@ class MyVehicle extends CGFobject {
         this.steering = new MyQuad(this.scene);
         this.steeringVert = new MyTrapeze(this.scene);
 
-        this.maxAnglePropeller = 10;
+        this.maxAnglePropeller = 12;
         this.horizAngle = 0;
         this.speed = 0;
         this.x = 0;
