@@ -38,7 +38,7 @@ class MyScene extends CGFscene {
         this.numberOfSides = 5;
         this.displayNormals = false;
         this.displayVehicle = true;
-        this.displayCubeMap = false;
+        this.displayCubeMap = true;
         this.scaleFactor = 3;
         this.speedFactor = 1;
         this.selectedTexture = 0;
@@ -128,10 +128,10 @@ class MyScene extends CGFscene {
 
         if (keysPressed) {
             console.log(text);
-            this.vehicle.update();
+            //this.vehicle.update();
         }
 
-        // this.vehicle.update();
+        this.vehicle.update();
     }
 
     display() {
