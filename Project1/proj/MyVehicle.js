@@ -36,21 +36,13 @@ class MyVehicle extends CGFobject {
         this.materialBody.loadTexture('images/blimp/body.png');
         this.materialBody.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
-        this.materialWingL = new CGFappearance(this.scene);
-        this.materialWingL.setAmbient(0.1, 0.1, 0.1, 1);
-        this.materialWingL.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.materialWingL.setSpecular(0.1, 0.1, 0.1, 1);
-        this.materialWingL.setShininess(10.0);
-        this.materialWingL.loadTexture('images/blimp/wingL.png');
-        this.materialWingL.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
-
-        this.materialWingR = new CGFappearance(this.scene);
-        this.materialWingR.setAmbient(0.1, 0.1, 0.1, 1);
-        this.materialWingR.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.materialWingR.setSpecular(0.1, 0.1, 0.1, 1);
-        this.materialWingR.setShininess(10.0);
-        this.materialWingR.loadTexture('images/blimp/wingR.png');
-        this.materialWingR.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
+        this.materialWing = new CGFappearance(this.scene);
+        this.materialWing.setAmbient(0.1, 0.1, 0.1, 1);
+        this.materialWing.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.materialWing.setSpecular(0.1, 0.1, 0.1, 1);
+        this.materialWing.setShininess(10.0);
+        this.materialWing.loadTexture('images/blimp/wingT.png');
+        this.materialWing.setTextureWrap('REPEAT', 'REPEAT');
 
         this.materialCabin = new CGFappearance(this.scene);
         this.materialCabin.setAmbient(0.1, 0.1, 0.1, 1);
@@ -113,7 +105,8 @@ class MyVehicle extends CGFobject {
         this.scene.scale(0.2, 0.2, 0.8);
         this.scene.translate(1.5, 0, -1);
         this.scene.rotate(-90 * Math.PI / 180, 1, 0, 0);
-        this.materialWingL.apply();
+        this.scene.rotate(Math.PI, 0, 1, 0);
+        this.materialWing.apply();
         this.steering.display();
         this.scene.popMatrix();
 
@@ -122,7 +115,6 @@ class MyVehicle extends CGFobject {
         this.scene.scale(0.2, 0.2, 0.8);
         this.scene.translate(-1.5, 0, -1);
         this.scene.rotate(-90 * Math.PI / 180, 1, 0, 0);
-        this.materialWingR.apply();
         this.steering.display();
         this.scene.popMatrix();
 
