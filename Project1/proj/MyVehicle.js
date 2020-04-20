@@ -12,7 +12,7 @@ class MyVehicle extends CGFobject {
         this.mainBody = new MySphere(this.scene, 24, 12);
         // this.bottomBody = new MySphere(this.scene, 16, 8);
         this.bottomBody = new MyCylinderClosed(this.scene, 16, 8);
-        this.steering = new MyQuad(this.scene);
+        this.steering = new MyTrapeze(this.scene);
         this.steeringVert = new MyTrapeze(this.scene);
 
         this.maxAnglePropeller = 12;
@@ -41,8 +41,8 @@ class MyVehicle extends CGFobject {
         this.materialWing.setDiffuse(0.9, 0.9, 0.9, 1);
         this.materialWing.setSpecular(0.1, 0.1, 0.1, 1);
         this.materialWing.setShininess(10.0);
-        this.materialWing.loadTexture('images/blimp/wingT.png');
-        this.materialWing.setTextureWrap('REPEAT', 'REPEAT');
+        this.materialWing.loadTexture('images/blimp/wing.png');
+        this.materialWing.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
         this.materialCabin = new CGFappearance(this.scene);
         this.materialCabin.setAmbient(0.1, 0.1, 0.1, 1);
@@ -69,7 +69,7 @@ class MyVehicle extends CGFobject {
         */
         
 
-        // Main Body (bigger section)
+        // // Main Body (bigger section)
         this.scene.translate(0, 10, 0);
         this.scene.pushMatrix();
         this.scene.scale(0.5, 0.5, 1);
@@ -100,25 +100,30 @@ class MyVehicle extends CGFobject {
         this.mainBody.display();
         this.scene.popMatrix();
         
-        // Left "Steering"
+        // Left Wing
         this.scene.pushMatrix();
-        this.scene.scale(0.2, 0.2, 0.8);
-        this.scene.translate(1.5, 0, -1);
+        this.scene.scale(0.3, 0.3, 0.3);
+        this.scene.translate(0.8, 0, -4);
         this.scene.rotate(-90 * Math.PI / 180, 1, 0, 0);
+        this.scene.rotate(90 * Math.PI / 180, 0, 0, 1);
         this.scene.rotate(Math.PI, 0, 1, 0);
+        
         this.materialWing.apply();
         this.steering.display();
         this.scene.popMatrix();
 
-        // Right "Steering"
+        // Right Wing
         this.scene.pushMatrix();
-        this.scene.scale(0.2, 0.2, 0.8);
-        this.scene.translate(-1.5, 0, -1);
-        this.scene.rotate(-90 * Math.PI / 180, 1, 0, 0);
+        this.scene.scale(0.3, 0.3, 0.3);
+        this.scene.translate(-0.8, 0, -4);
+        this.scene.rotate(Math.PI, 0, 0, 1);
+        this.scene.rotate(-Math.PI / 2, 0, 1, 0);
+        this.scene.rotate(Math.PI / 2, 1, 0, 0);
+
         this.steering.display();
         this.scene.popMatrix();
 
-        // Bottom "Steering"
+        // Bottom Wing
         this.scene.pushMatrix();
         this.scene.translate(0, -0.15, -0.65);
         if (Math.abs(this.horizAngle) >= this.maxAnglePropeller && this.horizAngle > 0) this.scene.rotate( (-this.maxAnglePropeller-90) * Math.PI / 180, 0, 1, 0);
@@ -129,7 +134,7 @@ class MyVehicle extends CGFobject {
         this.steeringVert.display();
         this.scene.popMatrix();
 
-        // Top "Steering"
+        // Top Wing
         this.scene.pushMatrix();
         this.scene.translate(0, 0.1, -0.65);
         if (Math.abs(this.horizAngle) >= this.maxAnglePropeller && this.horizAngle > 0) this.scene.rotate( (-this.maxAnglePropeller-90) * Math.PI / 180, 0, 1, 0);
@@ -140,7 +145,7 @@ class MyVehicle extends CGFobject {
         this.steeringVert.display();
         this.scene.popMatrix();
 
-        // Old Top "Steering"
+        // Old Top Wing
         // this.scene.pushMatrix();
         // this.scene.scale(0.3, -0.3, -0.3);
         // this.scene.translate(0, -0.5, 4.2);
