@@ -14,10 +14,15 @@ class MyVehicle extends CGFobject {
         this.bottomBody = new MyCylinder(this.scene, 16, 8);
         this.steering = new MyQuad(this.scene);
         this.steeringVert = new MyTrapeze(this.scene);
+        this.propeller = new MyUnitCube(this.scene);
 
         this.maxAnglePropeller = 12;
+        this.rotationAngleIncCap = 1.2;
+
         this.horizAngle = 0;
         this.speed = 0;
+        this.rotationAngle = 0;
+        this.rotationAngleIncrement = 0;
         this.x = 0;
         this.y = 0;
         this.z = 0;
@@ -78,7 +83,7 @@ class MyVehicle extends CGFobject {
         
 
         // Main Body (bigger section)
-        this.scene.translate(0, 10, 0);
+        // this.scene.translate(0, 10, 0);
         this.scene.pushMatrix();
         this.scene.scale(0.5, 0.5, 1);
         //this.scene.translate(0, 10, 0);
@@ -155,10 +160,38 @@ class MyVehicle extends CGFobject {
         // this.scene.rotate((90-this.horizAngle) * Math.PI / 180, 0, 1, 0);
         // this.steeringVert.display();
         // this.scene.popMatrix();
+
+        // Left Propeller
+        this.scene.pushMatrix();
+        //this.scene.scale(0.02, 0.12, 0.01);
+        // this.scene.translate(8.9, -4.3, -40.5);
+        
+        this.scene.translate(0.17, -0.52, -0.42);
+        this.scene.rotate(this.rotationAngle * 1.1, 0, 0, 1);
+        this.scene.scale(0.02, 0.12, 0.008);
+        
+        this.propeller.display();
+        this.scene.popMatrix();
+
+        // Right Propeller
+        this.scene.pushMatrix();
+        this.scene.translate(-0.17, -0.52, -0.42);
+        this.scene.rotate(this.rotationAngle * 1.1, 0, 0, 1);
+        this.scene.scale(0.02, 0.12, 0.008);
+        this.propeller.display();
+        this.scene.popMatrix();
+
     }
 
     update() {
         this.horizAngleRad = this.horizAngle * Math.PI / 180;
+        this.signSpeed = this.speed > 0 ? 0 : 1;
+        this.rotationAngleIncrement = (-1)**(this.signSpeed) * ((Math.abs(60 * this.speed * Math.PI / 180) < this.rotationAngleIncCap) ? Math.abs(60 * this.speed * Math.PI / 180) : this.rotationAngleIncCap);
+        this.rotationAngle += this.rotationAngleIncrement;
+
+        // console.log("Speed :" + this.speed);
+        // console.log("Speed :" + this.rotationAngleIncrement);
+        // console.log("Angle :" + this.rotationAngle);
 
         this.x += this.speed * Math.sin(this.horizAngleRad);
         this.z += this.speed * Math.cos(this.horizAngleRad);
@@ -172,7 +205,9 @@ class MyVehicle extends CGFobject {
     // e comece a decrescer a partir daí ou começa a decrescer a partir de
     // onde "parou" quando se estava a carregar no S ?
     accelerate(val) {
-        this.speed += val * 0.08;
+        // this.speed += val * 0.08;
+        this.speed += val * 0.01;
+        //console.log(this.speed);
     }
 
     reset() {
@@ -181,6 +216,7 @@ class MyVehicle extends CGFobject {
         this.x = 0;
         this.y = 0;
         this.z = 0;
+        this.rotationAngle = 0;
     }
 
 }
