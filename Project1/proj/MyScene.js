@@ -132,10 +132,10 @@ class MyScene extends CGFscene {
 
         if (keysPressed) {
             console.log(text);
-            this.vehicle.update();
+            //this.vehicle.update();
         }
 
-        // this.vehicle.update();
+        this.vehicle.update();
     }
 
     display() {
