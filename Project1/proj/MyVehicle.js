@@ -20,6 +20,44 @@ class MyVehicle extends CGFobject {
         this.y = 0;
         this.z = 0;
         this.reset();
+
+        this.initMaterials();
+    }
+
+    initMaterials(){
+
+        this.materialBody = new CGFappearance(this.scene);
+        this.materialBody.setAmbient(0.1, 0.1, 0.1, 1);
+        this.materialBody.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.materialBody.setSpecular(0.1, 0.1, 0.1, 1);
+        this.materialBody.setShininess(10.0);
+        this.materialBody.loadTexture('images/blimp/body1.png');
+        this.materialBody.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
+
+        this.materialWingL = new CGFappearance(this.scene);
+        this.materialWingL.setAmbient(0.1, 0.1, 0.1, 1);
+        this.materialWingL.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.materialWingL.setSpecular(0.1, 0.1, 0.1, 1);
+        this.materialWingL.setShininess(10.0);
+        this.materialWingL.loadTexture('images/blimp/wingL.png');
+        this.materialWingL.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
+
+        this.materialWingR = new CGFappearance(this.scene);
+        this.materialWingR.setAmbient(0.1, 0.1, 0.1, 1);
+        this.materialWingR.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.materialWingR.setSpecular(0.1, 0.1, 0.1, 1);
+        this.materialWingR.setShininess(10.0);
+        this.materialWingR.loadTexture('images/blimp/wingR.png');
+        this.materialWingR.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
+
+        this.materialCabin = new CGFappearance(this.scene);
+        this.materialCabin.setAmbient(0.1, 0.1, 0.1, 1);
+        this.materialCabin.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.materialCabin.setSpecular(0.1, 0.1, 0.1, 1);
+        this.materialCabin.setShininess(10.0);
+        this.materialCabin.loadTexture('images/blimp/cabin.jpg');
+        this.materialCabin.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
+
     }
 
     display() {
@@ -41,13 +79,15 @@ class MyVehicle extends CGFobject {
         this.scene.pushMatrix();
         this.scene.scale(0.5, 0.5, 1);
         //this.scene.translate(0, 10, 0);
+        this.materialBody.apply();
         this.mainBody.display();
         this.scene.popMatrix();
 
-        // Bottom Body
+        // Cabin
         this.scene.pushMatrix();
         this.scene.scale(0.2, 0.2, 0.4);
         this.scene.translate(0, -3, 0);
+        this.materialCabin.apply();
         this.bottomBody.display();
         this.scene.popMatrix();
 
@@ -70,6 +110,7 @@ class MyVehicle extends CGFobject {
         this.scene.scale(0.2, 0.2, 0.8);
         this.scene.translate(1.5, 0, -1);
         this.scene.rotate(-90 * Math.PI / 180, 1, 0, 0);
+        this.materialWingL.apply();
         this.steering.display();
         this.scene.popMatrix();
 
@@ -78,6 +119,7 @@ class MyVehicle extends CGFobject {
         this.scene.scale(0.2, 0.2, 0.8);
         this.scene.translate(-1.5, 0, -1);
         this.scene.rotate(-90 * Math.PI / 180, 1, 0, 0);
+        this.materialWingR.apply();
         this.steering.display();
         this.scene.popMatrix();
     }
