@@ -11,7 +11,7 @@ class MyVehicle extends CGFobject {
 
         this.mainBody = new MySphere(this.scene, 24, 12);
         // this.bottomBody = new MySphere(this.scene, 16, 8);
-        this.bottomBody = new MyCylinder(this.scene, 16, 8);
+        this.bottomBody = new MyCylinderClosed(this.scene, 16, 8);
         this.steering = new MyQuad(this.scene);
         this.steeringVert = new MyTrapeze(this.scene);
 
@@ -33,7 +33,7 @@ class MyVehicle extends CGFobject {
         this.materialBody.setDiffuse(0.9, 0.9, 0.9, 1);
         this.materialBody.setSpecular(0.1, 0.1, 0.1, 1);
         this.materialBody.setShininess(10.0);
-        this.materialBody.loadTexture('images/blimp/body1.png');
+        this.materialBody.loadTexture('images/blimp/body.png');
         this.materialBody.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
         this.materialWingL = new CGFappearance(this.scene);
