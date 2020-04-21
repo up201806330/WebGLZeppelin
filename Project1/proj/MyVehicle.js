@@ -60,25 +60,11 @@ class MyVehicle extends CGFobject {
     }
 
     display() {
-        
-        /*
-        this.scene.translate(this.x, this.y, this.z);
-        this.scene.rotate(this.horizAngle * Math.PI / 180.0, 0, 1, 0);
 
-        // Centering / aligning the vehicle (triangle at the moment)
-        this.scene.rotate(-90*Math.PI/180,1,0,0);
-        this.scene.rotate(45*Math.PI/180,0,0,1);
-        this.scene.translate(0.5,0.5, 0);
-
-        this.triangleFig.display();
-        */
-        
-
-        // // Main Body (bigger section)
+        // Main Body (bigger section)
         this.scene.translate(0, 10, 0);
         this.scene.pushMatrix();
         this.scene.scale(0.5, 0.5, 1);
-        //this.scene.translate(0, 10, 0);
         this.materialBody.apply();
         this.mainBody.display();
         this.scene.popMatrix();
@@ -124,7 +110,6 @@ class MyVehicle extends CGFobject {
         this.scene.rotate(Math.PI, 0, 0, 1);
         this.scene.rotate(-Math.PI / 2, 0, 1, 0);
         this.scene.rotate(Math.PI / 2, 1, 0, 0);
-
         this.steering.display();
         this.scene.popMatrix();
 
@@ -150,19 +135,8 @@ class MyVehicle extends CGFobject {
         this.steeringVert.display();
         this.scene.popMatrix();
 
-        // Old Top Wing
-        // this.scene.pushMatrix();
-        // this.scene.scale(0.3, -0.3, -0.3);
-        // this.scene.translate(0, -0.5, 4.2);
-        // this.scene.rotate((90-this.horizAngle) * Math.PI / 180, 0, 1, 0);
-        // this.steeringVert.display();
-        // this.scene.popMatrix();
-
         // Left Propeller
         this.scene.pushMatrix();
-        //this.scene.scale(0.02, 0.12, 0.01);
-        // this.scene.translate(8.9, -4.3, -40.5);
-        
         this.scene.translate(0.17, -0.52, -0.42);
         this.scene.rotate(this.rotationAngle * 1.1, 0, 0, 1);
         this.scene.scale(0.02, 0.12, 0.008);
@@ -187,7 +161,7 @@ class MyVehicle extends CGFobject {
         this.rotationAngle += this.rotationAngleIncrement;
 
         // console.log("Speed :" + this.speed);
-        // console.log("Speed :" + this.rotationAngleIncrement);
+        // console.log("RotAngInc :" + this.rotationAngleIncrement);
         // console.log("Angle :" + this.rotationAngle);
 
         this.x += this.speed * Math.sin(this.horizAngleRad);
@@ -198,13 +172,10 @@ class MyVehicle extends CGFobject {
         this.horizAngle += val;
     }
 
-    // DOUBT é suposto que quando se carrega por exemplo no W que a vel volte a 0
-    // e comece a decrescer a partir daí ou começa a decrescer a partir de
-    // onde "parou" quando se estava a carregar no S ?
     accelerate(val) {
         // this.speed += val * 0.08;
         this.speed += val * 0.01;
-        //console.log(this.speed);
+        // console.log(this.speed);
     }
 
     reset() {

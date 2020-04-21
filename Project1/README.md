@@ -32,7 +32,7 @@
 
 <h4>1.3 Cube Map - Creation of a cubemap for the ambient</h4>
 
-- [ ] ...
+- [x] ...
 
 <h4>1.4 MyVehicle - Preliminary Version</h4>
 
@@ -62,16 +62,16 @@
 
 <h4>3.1 Airship Modelation</h4>
 
-- [ ] Make Airship
-- [ ] Center of the Ellipsoid in (0, 10, 0)
-- [ ] Main body with 2 units of length and 1 unit of height / width
-- [ ] Textures on all objects of the Airship
-- [ ] Materials on all objects of the Airship
-- [ ] Submit
+- [x] Make Blim
+- [x] Center of the Ellipsoid in (0, 10, 0)
+- [x] Main body with 2 units of length and 1 unit of height / width
+- [x] Textures on all objects of the Airship
+- [x] Materials on all objects of the Airship
+- [x] Submit Picture
 
 <h4>3.2 Airship's aditional animations</h4>
 
-- [ ] 1. Propellers' animation: rotation speed -> airship speed
+- [x] 1. Propellers' animation: rotation speed -> airship speed
 - [ ] 2. Vertical "steering wheels" should incline to the left or right when the aircraft changes direction. (see the pdf for a more detailed description)
 - [ ] 3. Autopilot (see the pdf for a more detailed description)
 

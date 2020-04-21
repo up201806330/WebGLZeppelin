@@ -39,7 +39,7 @@ class MyScene extends CGFscene {
         this.displayNormals = false;
         this.displayVehicle = true;
         this.displayCubeMap = true;
-        this.scaleFactor = 3;
+        this.scaleFactor = 1;
         this.speedFactor = 1;
         this.selectedTexture = 0;
         this.textureIds = { 'Earth': 0, 'Space': 1};
