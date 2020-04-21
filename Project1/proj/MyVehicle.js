@@ -187,4 +187,9 @@ class MyVehicle extends CGFobject {
         this.rotationAngle = 0;
     }
 
+    
+    autoPilot() {
+        
+    }
+
 }

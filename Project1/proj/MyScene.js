@@ -43,6 +43,7 @@ class MyScene extends CGFscene {
         this.speedFactor = 1;
         this.selectedTexture = 0;
         this.textureIds = { 'Earth': 0, 'Space': 1};
+        this.onAutoPilot = false;
 
         this.cylinder = new MyCylinder(this, this.numberOfSides, 1);
 
@@ -94,30 +95,65 @@ class MyScene extends CGFscene {
         this.cubeMap.updateAppliedTexture();
     }
 
+
+    sleep(milliseconds) {
+        const date = Date.now();
+        let currentDate = null;
+        do {
+          currentDate = Date.now();
+        } while (currentDate - date < milliseconds);
+    }
+
+
+    sleep(milliseconds) {
+        var timeStart = new Date().getTime();
+        while (true) {
+            let elapsedTime = new Date().getTime() - timeStart;
+            if (elapsedTime > milliseconds) {
+                break;
+            }
+        }
+    }
+
     checkKeys() {
         var text = "Keys pressed: ";
         var keysPressed = false;
-
+        console.log("Autopilot: " + this.onAutoPilot);
         // Check for key codes e.g. in https://keycode.info/
-        if (this.gui.isKeyPressed("KeyW")) {
+
+        if (this.gui.isKeyPressed("KeyP")) {
+            text += " P ";
+
+            if (this.onAutoPilot) this.onAutoPilot = false;
+            else {
+                this.onAutoPilot = true;
+                this.vehicle.autoPilot();
+            }
+            keysPressed = true;
+            
+            this.sleep(250);    // to avoid double/multiple pressing of P in less than 250 ms
+        }
+
+
+        if (this.gui.isKeyPressed("KeyW") && !this.onAutoPilot) {
             text += " W ";
             this.vehicle.accelerate(this.speedFactor);
             keysPressed = true;
         }
 
-        if (this.gui.isKeyPressed("KeyS")) {
+        if (this.gui.isKeyPressed("KeyS") && !this.onAutoPilot) {
             text += " S ";
             this.vehicle.accelerate(-this.speedFactor);
             keysPressed = true;
         }
 
-        if (this.gui.isKeyPressed("KeyA")) {
+        if (this.gui.isKeyPressed("KeyA") && !this.onAutoPilot) {
             text += " A ";
             this.vehicle.turn(5);
             keysPressed = true;
         }
 
-        if (this.gui.isKeyPressed("KeyD")) {
+        if (this.gui.isKeyPressed("KeyD") && !this.onAutoPilot) {
             text += " D ";
             this.vehicle.turn(-5);
             keysPressed = true;
@@ -131,7 +167,7 @@ class MyScene extends CGFscene {
 
 
         if (keysPressed) {
-            //console.log(text);
+            // console.log(text);
             //this.vehicle.update();
         }
 
