@@ -118,7 +118,7 @@ class MyScene extends CGFscene {
     checkKeys() {
         var text = "Keys pressed: ";
         var keysPressed = false;
-        console.log("Autopilot: " + this.onAutoPilot);
+        // console.log("Autopilot: " + this.onAutoPilot);
         // Check for key codes e.g. in https://keycode.info/
 
         if (this.gui.isKeyPressed("KeyP")) {
