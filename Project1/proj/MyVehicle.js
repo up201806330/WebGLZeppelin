@@ -16,8 +16,12 @@ class MyVehicle extends CGFobject {
         this.steeringVert = new MyTrapeze(this.scene);
         this.propeller = new MyUnitCube(this.scene);
 
-        this.maxAnglePropeller = 12;
+        this.maxAnglePropeller = 20;
         this.rotationAngleIncCap = 1.2;
+
+        this.vertWingRotation = 0;
+        this.rotD = 0; // clock
+        this.rotA = 0; // counter clock
 
         this.horizAngle = 0;
         this.speed = 0;
@@ -98,7 +102,6 @@ class MyVehicle extends CGFobject {
         this.scene.rotate(-90 * Math.PI / 180, 1, 0, 0);
         this.scene.rotate(90 * Math.PI / 180, 0, 0, 1);
         this.scene.rotate(Math.PI, 0, 1, 0);
-        
         this.materialWing.apply();
         this.steering.display();
         this.scene.popMatrix();
@@ -116,9 +119,16 @@ class MyVehicle extends CGFobject {
         // Bottom Wing
         this.scene.pushMatrix();
         this.scene.translate(0, -0.15, -0.65);
-        if (Math.abs(this.horizAngle) >= this.maxAnglePropeller && this.horizAngle > 0) this.scene.rotate( (-this.maxAnglePropeller-90) * Math.PI / 180, 0, 1, 0);
-        else if (Math.abs(this.horizAngle) >= this.maxAnglePropeller && this.horizAngle < 0) this.scene.rotate( (this.maxAnglePropeller-90) * Math.PI / 180, 0, 1, 0);
-        else this.scene.rotate( (-this.horizAngle-90) * Math.PI / 180, 0, 1, 0);
+
+        this.scene.rotate(-90*Math.PI / 180, 0, 1, 0);
+        if (this.rotD != 0) {
+            this.vertWingRotation = (Math.abs(this.vertWingRotation + this.rotD) > this.maxAnglePropeller) ? -this.maxAnglePropeller : this.vertWingRotation + this.rotD;
+        }
+        else if (this.rotA != 0) {
+            this.vertWingRotation = (this.vertWingRotation + this.rotA > this.maxAnglePropeller) ? this.maxAnglePropeller : this.vertWingRotation + this.rotA;
+        }
+        this.scene.rotate( -this.vertWingRotation * Math.PI / 180, 0, 1, 0);
+
         this.scene.scale(0.3, 0.3, -0.3);
         this.scene.translate(-2, 0, 0);
         this.steeringVert.display();
@@ -127,9 +137,21 @@ class MyVehicle extends CGFobject {
         // Top Wing
         this.scene.pushMatrix();
         this.scene.translate(0, 0.1, -0.65);
-        if (Math.abs(this.horizAngle) >= this.maxAnglePropeller && this.horizAngle > 0) this.scene.rotate( (-this.maxAnglePropeller-90) * Math.PI / 180, 0, 1, 0);
-        else if (Math.abs(this.horizAngle) >= this.maxAnglePropeller && this.horizAngle < 0) this.scene.rotate( (this.maxAnglePropeller-90) * Math.PI / 180, 0, 1, 0);
-        else this.scene.rotate( (-this.horizAngle-90) * Math.PI / 180, 0, 1, 0);
+
+        this.scene.rotate(-90*Math.PI / 180, 0, 1, 0);
+        if (this.rotD != 0) {
+            this.vertWingRotation = (Math.abs(this.vertWingRotation + this.rotD) > this.maxAnglePropeller) ? -this.maxAnglePropeller : this.vertWingRotation + this.rotD;
+        }
+        else if (this.rotA != 0) {
+            this.vertWingRotation = (this.vertWingRotation + this.rotA > this.maxAnglePropeller) ? this.maxAnglePropeller : this.vertWingRotation + this.rotA;
+        }
+        this.scene.rotate( -this.vertWingRotation * Math.PI / 180, 0, 1, 0);
+        // if (Math.abs(this.horizAngle) >= this.maxAnglePropeller && this.horizAngle > 0) this.scene.rotate( (-this.maxAnglePropeller-90) * Math.PI / 180, 0, 1, 0);
+        // else if (Math.abs(this.horizAngle) >= this.maxAnglePropeller && this.horizAngle < 0) this.scene.rotate( (this.maxAnglePropeller-90) * Math.PI / 180, 0, 1, 0);
+        // else this.scene.rotate( (-this.horizAngle-90) * Math.PI / 180, 0, 1, 0);
+
+        this.rotD = 0; this.rotA = 0; // reseting "deltas"
+
         this.scene.scale(0.3, -0.3, -0.3);
         this.scene.translate(-2, 0, 0);
         this.steeringVert.display();
@@ -169,6 +191,18 @@ class MyVehicle extends CGFobject {
     }
 
     turn(val) {
+        if (val > 0) {
+            this.rotA = val;
+            this.rotD = 0;
+        }
+        else if (val < 0) {
+            this.rotA = 0;
+            this.rotD = val;
+        }
+        else {
+            this.rotA = 0;
+            this.rotD = 0;
+        }
         this.horizAngle += val;
     }
 
@@ -185,6 +219,9 @@ class MyVehicle extends CGFobject {
         this.y = 0;
         this.z = 0;
         this.rotationAngle = 0;
+        this.rotD = 0;
+        this.rotA = 0;
+        this.vertWingRotation = 0;
     }
 
     
