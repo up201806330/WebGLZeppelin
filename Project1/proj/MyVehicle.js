@@ -119,7 +119,7 @@ class MyVehicle extends CGFobject {
         // Bottom Wing
         this.scene.pushMatrix();
         this.scene.translate(0, -0.15, -0.65);
-
+        // console.log(this.vertWingRotation);
         this.scene.rotate(-90*Math.PI / 180, 0, 1, 0);
         if (this.rotD != 0) {
             this.vertWingRotation = (Math.abs(this.vertWingRotation + this.rotD) > this.maxAnglePropeller) ? -this.maxAnglePropeller : this.vertWingRotation + this.rotD;
@@ -127,6 +127,7 @@ class MyVehicle extends CGFobject {
         else if (this.rotA != 0) {
             this.vertWingRotation = (this.vertWingRotation + this.rotA > this.maxAnglePropeller) ? this.maxAnglePropeller : this.vertWingRotation + this.rotA;
         }
+        
         this.scene.rotate( -this.vertWingRotation * Math.PI / 180, 0, 1, 0);
 
         this.scene.scale(0.3, 0.3, -0.3);
@@ -188,6 +189,11 @@ class MyVehicle extends CGFobject {
 
         this.x += this.speed * Math.sin(this.horizAngleRad);
         this.z += this.speed * Math.cos(this.horizAngleRad);
+
+        if (this.vertWingRotation != 0 && this.rotD == 0 && this.rotA == 0) {
+            console.log(this.vertWingRotation);
+            this.vertWingRotation = (this.vertWingRotation > 0) ? this.vertWingRotation-1 : this.vertWingRotation+1;
+        }
     }
 
     turn(val) {
