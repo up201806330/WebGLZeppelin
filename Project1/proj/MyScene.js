@@ -32,7 +32,7 @@ class MyScene extends CGFscene {
 
 
         //Objects connected to MyInterface
-        this.displayAxis = true;
+        this.displayAxis = false;
         this.displaySphere = false;
         this.displayCylinder = false;
         this.numberOfSides = 5;
@@ -70,7 +70,7 @@ class MyScene extends CGFscene {
     }
 
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 25, 15), vec3.fromValues(0, 10, 0));
     }
 
     setDefaultAppearance() {
@@ -228,3 +228,5 @@ class MyScene extends CGFscene {
         // ---- END Primitive drawing section
     }
 }
+
+// TODO With new lighting, wings have lighting bug
