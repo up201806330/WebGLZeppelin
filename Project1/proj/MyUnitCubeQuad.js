@@ -46,6 +46,7 @@ class MyUnitCubeQuad extends CGFobject {
         this.materialBottom.setDiffuse(0.9, 0.9, 0.9, 1);
         this.materialBottom.setSpecular(0.1, 0.1, 0.1, 1);
         this.materialBottom.setShininess(10.0);
+        this.materialBottom.setEmission(0.9, 0.9, 0.9, 1);
         this.materialBottom.setTexture(this.bottom1);
         this.materialBottom.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
@@ -54,6 +55,7 @@ class MyUnitCubeQuad extends CGFobject {
         this.materialTop.setDiffuse(0.9, 0.9, 0.9, 1);
         this.materialTop.setSpecular(0.1, 0.1, 0.1, 1);
         this.materialTop.setShininess(10.0);
+        this.materialTop.setEmission(0.9, 0.9, 0.9, 1);
         this.materialTop.setTexture(this.top1);
         this.materialTop.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
@@ -62,6 +64,7 @@ class MyUnitCubeQuad extends CGFobject {
         this.materialSideN.setDiffuse(0.9, 0.9, 0.9, 1);
         this.materialSideN.setSpecular(0.1, 0.1, 0.1, 1);
         this.materialSideN.setShininess(10.0);
+        this.materialSideN.setEmission(0.9, 0.9, 0.9, 1);
         this.materialSideN.setTexture(this.front1);
         this.materialSideN.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
         
@@ -70,6 +73,7 @@ class MyUnitCubeQuad extends CGFobject {
         this.materialSideS.setDiffuse(0.9, 0.9, 0.9, 1);
         this.materialSideS.setSpecular(0.1, 0.1, 0.1, 1);
         this.materialSideS.setShininess(10.0);
+        this.materialSideS.setEmission(0.9, 0.9, 0.9, 1);
         this.materialSideS.setTexture(this.back1);
         this.materialSideS.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
         
@@ -78,6 +82,7 @@ class MyUnitCubeQuad extends CGFobject {
         this.materialSideW.setDiffuse(0.9, 0.9, 0.9, 1);
         this.materialSideW.setSpecular(0.1, 0.1, 0.1, 1);
         this.materialSideW.setShininess(10.0);
+        this.materialSideW.setEmission(0.9, 0.9, 0.9, 1);
         this.materialSideW.setTexture(this.left1);
         this.materialSideW.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
         
@@ -86,6 +91,7 @@ class MyUnitCubeQuad extends CGFobject {
         this.materialSideE.setDiffuse(0.9, 0.9, 0.9, 1);
         this.materialSideE.setSpecular(0.1, 0.1, 0.1, 1);
         this.materialSideE.setShininess(10.0);
+        this.materialSideE.setEmission(0.9, 0.9, 0.9, 1);
         this.materialSideE.setTexture(this.right1);
         this.materialSideE.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
     }

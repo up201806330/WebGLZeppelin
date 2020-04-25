@@ -60,7 +60,7 @@ class MyScene extends CGFscene {
 
     initLights() {
         /* Ambient light */
-        this.ambientLight = 8;
+        this.ambientLight = 4;
         this.setGlobalAmbientLight(this.ambientLight, this.ambientLight, this.ambientLight, 1.0);
 
         this.lights[0].setPosition(15, 2, 5, 1);
