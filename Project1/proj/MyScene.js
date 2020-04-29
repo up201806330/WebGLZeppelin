@@ -83,7 +83,7 @@ class MyScene extends CGFscene {
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
         //To be done...
-
+        this.vehicle.update(t);
         this.checkKeys();
     }
 
@@ -124,7 +124,9 @@ class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyP")) {
             text += " P ";
 
-            if (this.onAutoPilot) this.onAutoPilot = false;
+            if (this.onAutoPilot) {
+                this.onAutoPilot = false;
+            }
             else {
                 this.onAutoPilot = true;
                 this.vehicle.autoPilot();
@@ -171,7 +173,7 @@ class MyScene extends CGFscene {
             //this.vehicle.update();
         }
 
-        this.vehicle.update();
+        // this.vehicle.update();
     }
 
     display() {
