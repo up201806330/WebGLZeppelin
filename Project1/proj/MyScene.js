@@ -56,6 +56,7 @@ class MyScene extends CGFscene {
         // this.sphereMaterial.setTextureWrap( 'REPEAT','CLAMP_TO_EDGE'); <-- dont think this is needed in this case maybe (found it in TP04 - MyScene)
 
         this.cubeMap = new MyUnitCubeQuad(this);
+        this.terrain = new MyTerrain(this);
     }
 
     initLights() {
@@ -226,6 +227,8 @@ class MyScene extends CGFscene {
             this.vehicle.display();
             this.popMatrix();
         }
+
+        this.terrain.display();
 
         // ---- END Primitive drawing section
     }
