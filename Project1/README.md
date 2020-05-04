@@ -72,8 +72,8 @@
 <h4>3.2 Airship's aditional animations</h4>
 
 - [x] 1. Propellers' animation: rotation speed -> airship speed
-- [ ] 2. Vertical "steering wheels" should incline to the left or right when the aircraft changes direction. (see the pdf for a more detailed description)
-- [ ] 3. Autopilot (see the pdf for a more detailed description)
+- [x] 2. Vertical "steering wheels" should incline to the left or right when the aircraft changes direction. (see the pdf for a more detailed description)
+- [x] 3. Autopilot (see the pdf for a more detailed description)
 
 
 <h3>4. Terrain</h3>
