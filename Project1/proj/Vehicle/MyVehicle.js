@@ -69,7 +69,7 @@ class MyVehicle extends CGFobject {
     display() {
 
         // Main Body (bigger section)
-        this.scene.translate(0, 10, 0);
+        // this.scene.translate(0, 10, 0);
         this.scene.pushMatrix();
         this.scene.scale(0.5, 0.5, 1);
         this.materialBody.apply();
@@ -173,7 +173,7 @@ class MyVehicle extends CGFobject {
         // Right Propeller
         this.scene.pushMatrix();
         this.scene.translate(-0.17, -0.52, -0.42);
-        this.scene.rotate(this.propellerRotationAngle * 110, 0, 0, 1);
+        this.scene.rotate(this.propellerRotationAngle * 1.1, 0, 0, 1);
         this.scene.scale(0.02, 0.12, 0.008);
         this.propeller.display();
         this.scene.popMatrix();

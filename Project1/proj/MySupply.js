@@ -9,55 +9,74 @@ const SupplyStates = {
  * @constructor
  * @param scene - Reference to MyScene object
  */
-class MyVehicle extends CGFobject {
+class MySupply extends CGFobject {
 
     constructor(scene) {
 		super(scene);
         
-        // TODO
-        // this.cube = new MyUnitCubeQuad 2 ?
 
-        this.pos;   // [x,y,z]
+        this.cube = new MyUnitCubeQuad2(this.scene);
+
+        this.x_;
+        this.y_;
+        this.z_;
+        this.yStart;
         this.fallSpeed;
-        this.prevUpdate = 0;
+        // this.prevUpdate = 0;
         this.state = SupplyStates.INACTIVE;
         
     }
 
-    drop(dropPosition) {
-        this.pos = dropPosition;
-
+    drop(x,y,z) {
+        this.x_ = x;
+        this.y_ = y;
+        this.z_ = z;
+        this.yStart = y;
         this.state = SupplyStates.FALLING;
 
         // check if it makes sense:
-        // this.fallSpeed = dropPosition[1] * intervTempoQuePassou / 3000 ms
+        this.fallSpeed = this.yStart / 3000;
     }
 
     land() { this.state = SupplyStates.LANDED; }
 
     // call in MyScene in update(t) 
     update(t) {
+        
         if (this.prevUpdate == 0) {
             this.prevUpdate = t;
         }
         var elapsed = t - this.prevUpdate;
         this.prevUpdate = t;
-
+        
         if (this.state == SupplyStates.FALLING) {
-
+            // calculate delta y
+            var deltaY = elapsed * this.fallSpeed;
+            
             // update y
-            this.pos[1] = (this.pos[1] - 0.2 < 0) ? 0 : this.pos[1] - 0.2;
-
-            if (this.pos[1] == 0) this.land();
+            this.y_ = ( (this.y_ - deltaY) < 0) ? 0 : this.y_ - deltaY;
+            console.log(this.y_);
+            if (this.y_ == 0) this.land();
         }
+        
     }
 
     display() {
-        if (this.state == SupplyStates.FALLING) {
-            
+        if (this.state != SupplyStates.INACTIVE) {
+        this.scene.pushMatrix();
+        this.scene.translate(this.x_, this.y_, this.z_);
+        this.cube.display();
+        this.scene.popMatrix();
         }
+
+        /*
         else if (this.state == SupplyStates.LANDED) {
             // open box?
         }
+        */
+    }
+
+    reset() {
+        this.state = SupplyStates.INACTIVE;
     }
 }

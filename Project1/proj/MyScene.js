@@ -29,7 +29,7 @@ class MyScene extends CGFscene {
         this.sphere = new MySphere(this, 16, 8);
         // this.cylinder = new MyCylinder(this, 4, 1);  <-- declaration a bit ahead after the numberOfSides var
         this.vehicle = new MyVehicle(this);
-
+        this.supply1 = new MySupply(this);
 
         //Objects connected to MyInterface
         this.displayAxis = false;
@@ -43,6 +43,8 @@ class MyScene extends CGFscene {
         this.speedFactor = 1;
         this.selectedTexture = 0;
         this.textureIds = { 'Earth': 0, 'Space': 1};
+        
+        
         this.onAutoPilot = false;
 
         this.cylinder = new MyCylinder(this, this.numberOfSides, 1);
@@ -84,6 +86,7 @@ class MyScene extends CGFscene {
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
         //To be done...
+        this.supply1.update(t);
         this.vehicle.update(t);
         this.checkKeys();
     }
@@ -137,6 +140,11 @@ class MyScene extends CGFscene {
             this.sleep(250);    // to avoid double/multiple pressing of P in less than 250 ms
         }
 
+        if (this.gui.isKeyPressed("KeyL") && !this.supplyOnCooldown) {
+            text += " L ";
+            this.supply1.drop(this.vehicle.x, this.vehicle.y + 9.14, this.vehicle.z);
+            keysPressed = true;
+        }
 
         if (this.gui.isKeyPressed("KeyW") && !this.onAutoPilot) {
             text += " W ";
@@ -165,6 +173,7 @@ class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyR")) {
             text += " R ";
             this.vehicle.reset();
+            this.supply1.reset();
             keysPressed = true;
         }
 
@@ -222,13 +231,21 @@ class MyScene extends CGFscene {
         if (this.displayVehicle) {
             this.pushMatrix();
             this.multMatrix(sca); // Vehicle can be scaled with the slider
-            this.translate(this.vehicle.x, this.vehicle.y, this.vehicle.z);
+            this.translate(this.vehicle.x, this.vehicle.y + 10, this.vehicle.z);
             this.rotate(this.vehicle.horizAngle * Math.PI / 180.0, 0, 1, 0);
+            // this.translate(0, 10, 0);
             this.vehicle.display();
             this.popMatrix();
         }
 
+        this.pushMatrix();
+        this.multMatrix(sca);
+        this.supply1.display();
+        this.popMatrix();
+        
+    
         this.terrain.display();
+
 
         // ---- END Primitive drawing section
     }
