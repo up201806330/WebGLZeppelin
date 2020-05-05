@@ -55,7 +55,7 @@ class MySupply extends CGFobject {
             
             // update y
             this.y_ = ( (this.y_ - deltaY) < 0) ? 0 : this.y_ - deltaY;
-            console.log(this.y_);
+            // console.log(this.y_);
             if (this.y_ == 0) this.land();
         }
         

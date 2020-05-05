@@ -29,7 +29,10 @@ class MyScene extends CGFscene {
         this.sphere = new MySphere(this, 16, 8);
         // this.cylinder = new MyCylinder(this, 4, 1);  <-- declaration a bit ahead after the numberOfSides var
         this.vehicle = new MyVehicle(this);
-        this.supply1 = new MySupply(this);
+        this.supplyDrops = [];
+
+        for (var i = 0; i < 5; i++) this.supplyDrops.push(new MySupply(this));
+        
 
         //Objects connected to MyInterface
         this.displayAxis = false;
@@ -46,6 +49,10 @@ class MyScene extends CGFscene {
         
         
         this.onAutoPilot = false;
+        this.suppliesDropped = 0;
+        this.supplyOnCooldown = false;
+        this.prevUpdate = 0;
+        this.currentWait = 0;
 
         this.cylinder = new MyCylinder(this, this.numberOfSides, 1);
 
@@ -86,9 +93,22 @@ class MyScene extends CGFscene {
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
         //To be done...
-        this.supply1.update(t);
+        for (var i = 0; i < 5; i++) this.supplyDrops[i].update(t);
         this.vehicle.update(t);
         this.checkKeys();
+
+        if (this.prevUpdate == 0) {
+            this.prevUpdate = t;
+        }
+        var elapsed = t - this.prevUpdate;
+        this.prevUpdate = t;
+        this.currentWait += elapsed;
+
+        if (this.currentWait >= 200) {
+            this.currentWait = 0;
+            this.prevUpdate = 0;
+            this.supplyOnCooldown = false;
+        }
     }
 
     updateNumberSides() {
@@ -140,9 +160,16 @@ class MyScene extends CGFscene {
             this.sleep(250);    // to avoid double/multiple pressing of P in less than 250 ms
         }
 
-        if (this.gui.isKeyPressed("KeyL") && !this.supplyOnCooldown) {
+
+
+        if (this.gui.isKeyPressed("KeyL") && !this.supplyOnCooldown && this.suppliesDropped < 5) {
+            
             text += " L ";
-            this.supply1.drop(this.vehicle.x, this.vehicle.y + 9.14, this.vehicle.z);
+            
+            this.supplyDrops[this.suppliesDropped++].drop(this.vehicle.x, this.vehicle.y + 9.14, this.vehicle.z);
+            console.log(this.suppliesDropped);
+            
+            this.supplyOnCooldown = true;
             keysPressed = true;
         }
 
@@ -173,7 +200,10 @@ class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyR")) {
             text += " R ";
             this.vehicle.reset();
-            this.supply1.reset();
+
+            for (var i = 0; i < 5; i++) this.supplyDrops[i].reset();
+            // this.supplyDrops[this.suppliesDropped].reset();
+            this.suppliesDropped = 0;
             keysPressed = true;
         }
 
@@ -240,7 +270,7 @@ class MyScene extends CGFscene {
 
         this.pushMatrix();
         this.multMatrix(sca);
-        this.supply1.display();
+        for (var i = 0; i < 5; i++) this.supplyDrops[i].display();
         this.popMatrix();
         
     

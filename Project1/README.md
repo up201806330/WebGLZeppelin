@@ -84,12 +84,21 @@
 
 <h4>5.1 Supply Drop Creation</h4>
 
-- [ ] ...
+- [x] enum
+- [x] constructor
+- [x] update
+- [x] display
+- [x] drop
+- [x] land
+- [x] "displayFalling"
+- [ ] "displayOnLanded"
 
 <h4>5.2 Launch Control</h4>
 
-- [ ] ...
-
+- [x] 5 supply drops
+- [x] "L" to drop
+- [x] 3 seconds to hit Y=0
+- [ ] landed display
 
 <h3>6. Shaders</h3>
 
