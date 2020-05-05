@@ -4,6 +4,8 @@ const SupplyStates = {
     LANDED:     2
 };
 
+const FLOOR = 0.25;
+
 /**
  * MyVehicle
  * @constructor
@@ -54,9 +56,9 @@ class MySupply extends CGFobject {
             var deltaY = elapsed * this.fallSpeed;
             
             // update y
-            this.y_ = ( (this.y_ - deltaY) < 0) ? 0 : this.y_ - deltaY;
-            // console.log(this.y_);
-            if (this.y_ == 0) this.land();
+            this.y_ = ( (this.y_ - deltaY) < FLOOR) ? FLOOR : this.y_ - deltaY;
+            
+            if (this.y_ == FLOOR) this.land();
         }
 
         else if (this.state == SupplyStates.LANDED && this.openAnimationAngle < 90) {
