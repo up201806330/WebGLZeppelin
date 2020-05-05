@@ -75,8 +75,7 @@ class MyUnitCubeQuad2 extends CGFobject {
         this.materialSideE.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
     }
     */
-    display() {
-        //this.scene.scale(1, 1, -1);
+    displayOnFall() {
         
         // ZX face (higher Y) TOP
         this.scene.pushMatrix();
@@ -130,6 +129,65 @@ class MyUnitCubeQuad2 extends CGFobject {
         this.scene.scale(0.5,0.5,0.5);
         this.scene.rotate(90*Math.PI/180,0,1,0);
         this.scene.translate(0, 0, 0.5);
+        this.scene.scale(-1, 1, -1); // Needed because texture was outside the cube and inverted
+        // this.materialSideW.apply();
+        this.quad.display();
+        this.scene.popMatrix();
+    }
+
+    displayOnLanded() {
+
+        // ZX face (lower Y) BOTTOM
+        this.scene.pushMatrix();
+        this.scene.scale(0.5,0.5,0.5);
+        this.scene.rotate(90*Math.PI/180,1,0,0);
+        this.scene.translate(0, 0, 0.5);
+        this.scene.scale(1, 1, -1);
+        this.scene.scale(-1, 1, 1); //Fixed invert
+        // this.materialBottom.apply();
+        this.quad.display();
+        this.scene.popMatrix();
+
+        // XY face (lower Z) SOUTH
+        this.scene.pushMatrix();
+        this.scene.scale(0.5,0.5,0.5);
+        this.scene.translate(0, -0.5, -0.5);
+        this.scene.rotate(-60*Math.PI/180,1,0,0); // rotation angle
+        this.scene.translate(0, 0.5, 0);
+        // this.materialSideS.apply();
+        this.quad.display();
+        this.scene.popMatrix();
+        
+        // XY face (higher Z) NORTH
+        this.scene.pushMatrix();
+        this.scene.scale(0.5,0.5,0.5);
+        this.scene.translate(0, -0.5, 0.5);
+        this.scene.rotate(60*Math.PI/180,1,0,0); // rotation angle
+        this.scene.scale(-1, 1, -1); // Needed because texture was outside the cube and inverted
+        this.scene.translate(0, 0.5, 0);
+        // this.materialSideN.apply();
+        this.quad.display();
+        this.scene.popMatrix();
+
+        // ZY face (lower X) EAST
+        this.scene.pushMatrix();
+        this.scene.scale(0.5,0.5,0.5);
+        this.scene.translate(-0.5, -0.5, 0);
+        this.scene.rotate(60*Math.PI/180,0,0,1); // rotation angle
+        this.scene.rotate(90*Math.PI/180,0,1,0);
+        this.scene.translate(0, 0.5, 0);
+        // this.scene.translate(0, 0, -0.5);
+        // this.materialSideE.apply();
+        this.quad.display();
+        this.scene.popMatrix();
+
+        // ZY face (higher X) WEST
+        this.scene.pushMatrix();
+        this.scene.scale(0.5,0.5,0.5);
+        this.scene.translate(0.5, -0.5, 0);
+        this.scene.rotate(-60*Math.PI/180,0,0,1); // rotation angle
+        this.scene.rotate(90*Math.PI/180,0,1,0);
+        this.scene.translate(0, 0.5, 0);
         this.scene.scale(-1, 1, -1); // Needed because texture was outside the cube and inverted
         // this.materialSideW.apply();
         this.quad.display();

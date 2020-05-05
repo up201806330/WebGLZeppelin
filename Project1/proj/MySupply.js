@@ -62,18 +62,20 @@ class MySupply extends CGFobject {
     }
 
     display() {
-        if (this.state != SupplyStates.INACTIVE) {
-        this.scene.pushMatrix();
-        this.scene.translate(this.x_, this.y_, this.z_);
-        this.cube.display();
-        this.scene.popMatrix();
+        if (this.state == SupplyStates.FALLING) {
+            this.scene.pushMatrix();
+            this.scene.translate(this.x_, this.y_, this.z_);
+            this.cube.displayOnFall();
+            this.scene.popMatrix();
         }
-
-        /*
+        
         else if (this.state == SupplyStates.LANDED) {
-            // open box?
+            this.scene.pushMatrix();
+            this.scene.translate(this.x_, this.y_, this.z_);
+            this.cube.displayOnLanded();
+            this.scene.popMatrix();
         }
-        */
+        
     }
 
     reset() {
