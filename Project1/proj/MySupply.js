@@ -22,7 +22,7 @@ class MySupply extends CGFobject {
         this.z_;
         this.yStart;
         this.fallSpeed;
-        // this.prevUpdate = 0;
+        this.openAnimationAngle = 0;
         this.state = SupplyStates.INACTIVE;
         
     }
@@ -58,6 +58,10 @@ class MySupply extends CGFobject {
             // console.log(this.y_);
             if (this.y_ == 0) this.land();
         }
+
+        else if (this.state == SupplyStates.LANDED && this.openAnimationAngle < 90) {
+            this.openAnimationAngle += 5;
+        }
         
     }
 
@@ -72,7 +76,7 @@ class MySupply extends CGFobject {
         else if (this.state == SupplyStates.LANDED) {
             this.scene.pushMatrix();
             this.scene.translate(this.x_, this.y_, this.z_);
-            this.cube.displayOnLanded();
+            this.cube.displayOnLanded(this.openAnimationAngle);
             this.scene.popMatrix();
         }
         
@@ -80,5 +84,6 @@ class MySupply extends CGFobject {
 
     reset() {
         this.state = SupplyStates.INACTIVE;
+        this.openAnimationAngle = 0;
     }
 }
