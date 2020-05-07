@@ -199,9 +199,10 @@ class MyVehicle extends CGFobject {
         // console.log("Angle :" + this.propellerRotationAngle);
 
         if (this.scene.onAutoPilot) {
-            this.x += Math.sin(this.horizAngleRad);
-            this.z += Math.cos(this.horizAngleRad);
+            // this.vehicle.speed = (2 * 5 * Math.PI * elapsed)
             this.turn(360 * elapsed / 5000.0);
+            this.x = -5*Math.cos(this.horizAngle * Math.PI / 180) + this.x_center;
+            this.z = 5*Math.sin(this.horizAngle * Math.PI / 180) + this.z_center;
         }
         else {
             this.x += this.speed * Math.sin(this.horizAngleRad);
@@ -250,8 +251,9 @@ class MyVehicle extends CGFobject {
 
     
     autoPilot() {
-        
-        this.scene.rotate(90*Math.PI / 180, 0, 1, 0);
+        var startAngle = (this.horizAngle + 90) * Math.PI / 180;
+        this.x_center = this.x + 5*Math.sin(startAngle);
+        this.z_center = this.z + 5*Math.cos(startAngle);
     }
 
 }
