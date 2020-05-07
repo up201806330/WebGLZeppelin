@@ -3,7 +3,7 @@
  * @constructor
  * @param scene - Reference to MyScene object
  */
-class MyQuad extends CGFobject {
+class MySkyQuad extends CGFobject {
 	constructor(scene, coords) {
 		super(scene);
 		this.initBuffers();
@@ -23,7 +23,6 @@ class MyQuad extends CGFobject {
 		this.indices = [
             0, 1, 2,
             2, 1, 3,
-
         ]
 
 		//Facing Z positive
