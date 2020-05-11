@@ -29,6 +29,7 @@ class MyScene extends CGFscene {
         this.sphere = new MySphere(this, 16, 8);
         // this.cylinder = new MyCylinder(this, 4, 1);  <-- declaration a bit ahead after the numberOfSides var
         this.vehicle = new MyVehicle(this);
+        this.billboard = new MyBillboard(this);
         this.supplyDrops = [];
 
         for (var i = 0; i < 5; i++) this.supplyDrops.push(new MySupply(this));
@@ -167,7 +168,8 @@ class MyScene extends CGFscene {
             text += " L ";
             
             this.supplyDrops[this.suppliesDropped++].drop(this.vehicle.x, this.vehicle.y + 9.14, this.vehicle.z);
-            console.log(this.suppliesDropped);
+            // console.log(this.suppliesDropped);
+            this.billboard.update();
             
             this.supplyOnCooldown = true;
             keysPressed = true;
@@ -202,8 +204,9 @@ class MyScene extends CGFscene {
             this.vehicle.reset();
 
             for (var i = 0; i < 5; i++) this.supplyDrops[i].reset();
-            // this.supplyDrops[this.suppliesDropped].reset();
+
             this.suppliesDropped = 0;
+            this.billboard.reset();
             keysPressed = true;
         }
 
@@ -273,8 +276,15 @@ class MyScene extends CGFscene {
         for (var i = 0; i < 5; i++) this.supplyDrops[i].display();
         this.popMatrix();
         
-    
+        this.pushMatrix();
+        this.translate(0, -0.48, 0);
         this.terrain.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(-2, 2.0, -10.0);
+        this.billboard.display();
+        this.popMatrix();
 
 
         // ---- END Primitive drawing section

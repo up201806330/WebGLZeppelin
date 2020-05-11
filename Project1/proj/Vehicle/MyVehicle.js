@@ -15,6 +15,7 @@ class MyVehicle extends CGFobject {
         this.steering = new MyTrapeze(this.scene);
         this.steeringVert = new MyTrapeze(this.scene);
         this.propeller = new MyUnitCube(this.scene);
+        this.flag = new MyFlag(this.scene);
 
         this.maxAnglePropeller = 20;
         this.rotationAngleIncCap = 1.2;
@@ -36,6 +37,7 @@ class MyVehicle extends CGFobject {
         this.reset();
 
         this.initMaterials();
+        this.initShaders();
     }
 
     initMaterials(){
@@ -66,8 +68,21 @@ class MyVehicle extends CGFobject {
 
     }
 
-    display() {
+    initShaders() {
+        // Flag Sides' Shaders
+        this.flagSide1 = new CGFshader(this.scene.gl, "shaders/flagSide1.vert", "shaders/flag.frag");
+        this.flagSide1.setUniformsValues({ uSampler: 1 });
+        this.flagSide1.setUniformsValues({ timeFactor: 0 });
+        this.flagSide1.setUniformsValues({ speed: 0 });
 
+        this.flagSide2 = new CGFshader(this.scene.gl, "shaders/flagSide2.vert", "shaders/flag.frag");
+        this.flagSide2.setUniformsValues({ uSampler: 1 });
+        this.flagSide2.setUniformsValues({ timeFactor: 0 });
+        this.flagSide2.setUniformsValues({ speed: 0 });
+    }
+
+    display() {
+        
         // Main Body (bigger section)
         // this.scene.translate(0, 10, 0);
         this.scene.pushMatrix();
@@ -140,7 +155,7 @@ class MyVehicle extends CGFobject {
 
         // Top Wing
         this.scene.pushMatrix();
-        this.scene.translate(0, 0.1, -0.65);
+        this.scene.translate(0, 0.15, -0.65);
 
         this.scene.rotate(-90*Math.PI / 180, 0, 1, 0);
         if (this.rotD != 0) {
@@ -178,9 +193,16 @@ class MyVehicle extends CGFobject {
         this.propeller.display();
         this.scene.popMatrix();
 
+        
+        // Flag
+        this.scene.pushMatrix();
+        this.scene.translate(0, 0, -1.8);
+        this.flag.display();
+        this.scene.popMatrix();
     }
 
     update(t) {
+
         if (this.prevUpdate == 0) {
             this.prevUpdate = t;
         }
@@ -199,10 +221,9 @@ class MyVehicle extends CGFobject {
         // console.log("Angle :" + this.propellerRotationAngle);
 
         if (this.scene.onAutoPilot) {
-            // this.vehicle.speed = (2 * 5 * Math.PI * elapsed)
             this.turn(360 * elapsed / 5000.0);
-            this.x = -5*Math.cos(this.horizAngle * Math.PI / 180) + this.x_center;
-            this.z = 5*Math.sin(this.horizAngle * Math.PI / 180) + this.z_center;
+            this.x = -5*Math.cos(this.horizAngle * Math.PI / 180) + this.xCenter;
+            this.z = 5*Math.sin(this.horizAngle * Math.PI / 180) + this.zCenter;
         }
         else {
             this.x += this.speed * Math.sin(this.horizAngleRad);
@@ -210,9 +231,13 @@ class MyVehicle extends CGFobject {
         }
 
         if (this.vertWingRotation != 0 && this.rotD == 0 && this.rotA == 0) {
-            // console.log(this.vertWingRotation);
             this.vertWingRotation = (this.vertWingRotation > 0) ? this.vertWingRotation-1 : this.vertWingRotation+1;
         }
+
+        // console.log("Speed: " + this.speed);
+        // console.log("Time: " + elapsed);
+        this.flag.update(t / 1000 % 1000, this.speed);
+        
     }
 
     turn(val) {
@@ -231,11 +256,7 @@ class MyVehicle extends CGFobject {
         this.horizAngle += val;
     }
 
-    accelerate(val) {
-        // this.speed += val * 0.08;
-        this.speed += val * 0.01;
-        // console.log(this.speed);
-    }
+    accelerate(val) { this.speed += val * 0.01; }
 
     reset() {
         this.horizAngle = 0;
@@ -252,8 +273,8 @@ class MyVehicle extends CGFobject {
     
     autoPilot() {
         var startAngle = (this.horizAngle + 90) * Math.PI / 180;
-        this.x_center = this.x + 5*Math.sin(startAngle);
-        this.z_center = this.z + 5*Math.cos(startAngle);
+        this.xCenter = this.x + 5 * Math.sin(startAngle);
+        this.zCenter = this.z + 5 * Math.cos(startAngle);
     }
 
 }
