@@ -8,26 +8,13 @@ class MyUnitCubeQuad2 extends CGFobject {
         super(scene);
         this.quad = new MyQuad(this.scene);
 
-        // this.initCubeMaterials();
+        this.initCubeMaterials();
     }
 
-    /*
+    
     initCubeMaterials(){
-        this.bottom     = new CGFtexture(this.scene, 'images/split_cubemap/bottom.png');
-        this.top        = new CGFtexture(this.scene, 'images/split_cubemap/top.png');
-        this.left       = new CGFtexture(this.scene, 'images/split_cubemap/left.png');
-        this.right      = new CGFtexture(this.scene, 'images/split_cubemap/right.png');
-        this.front      = new CGFtexture(this.scene, 'images/split_cubemap/front.png');
-        this.back1      = new CGFtexture(this.scene, 'images/split_cubemap/back.png');
-
-        this.materialBottom = new CGFappearance(this.scene);
-        this.materialBottom.setAmbient(0.1, 0.1, 0.1, 1);
-        this.materialBottom.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.materialBottom.setSpecular(0.1, 0.1, 0.1, 1);
-        this.materialBottom.setShininess(10.0);
-        this.materialBottom.setEmission(0.9, 0.9, 0.9, 1);
-        this.materialBottom.setTexture(this.bottom);
-        this.materialBottom.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
+        this.top     = new CGFtexture(this.scene, 'images/crateTop.png');
+        this.side        = new CGFtexture(this.scene, 'images/crateSide.png');
 
         this.materialTop = new CGFappearance(this.scene);
         this.materialTop.setAmbient(0.1, 0.1, 0.1, 1);
@@ -36,45 +23,19 @@ class MyUnitCubeQuad2 extends CGFobject {
         this.materialTop.setShininess(10.0);
         this.materialTop.setEmission(0.9, 0.9, 0.9, 1);
         this.materialTop.setTexture(this.top);
-        this.materialTop.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
+        this.materialTop.setTextureWrap('REPEAT', 'REPEAT');
 
-        this.materialSideN = new CGFappearance(this.scene);
-        this.materialSideN.setAmbient(0.1, 0.1, 0.1, 1);
-        this.materialSideN.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.materialSideN.setSpecular(0.1, 0.1, 0.1, 1);
-        this.materialSideN.setShininess(10.0);
-        this.materialSideN.setEmission(0.9, 0.9, 0.9, 1);
-        this.materialSideN.setTexture(this.front);
-        this.materialSideN.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
-        
-        this.materialSideS = new CGFappearance(this.scene);
-        this.materialSideS.setAmbient(0.1, 0.1, 0.1, 1);
-        this.materialSideS.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.materialSideS.setSpecular(0.1, 0.1, 0.1, 1);
-        this.materialSideS.setShininess(10.0);
-        this.materialSideS.setEmission(0.9, 0.9, 0.9, 1);
-        this.materialSideS.setTexture(this.back);
-        this.materialSideS.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
-        
-        this.materialSideW = new CGFappearance(this.scene);
-        this.materialSideW.setAmbient(0.1, 0.1, 0.1, 1);
-        this.materialSideW.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.materialSideW.setSpecular(0.1, 0.1, 0.1, 1);
-        this.materialSideW.setShininess(10.0);
-        this.materialSideW.setEmission(0.9, 0.9, 0.9, 1);
-        this.materialSideW.setTexture(this.left);
-        this.materialSideW.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
-        
-        this.materialSideE = new CGFappearance(this.scene);
-        this.materialSideE.setAmbient(0.1, 0.1, 0.1, 1);
-        this.materialSideE.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.materialSideE.setSpecular(0.1, 0.1, 0.1, 1);
-        this.materialSideE.setShininess(10.0);
-        this.materialSideE.setEmission(0.9, 0.9, 0.9, 1);
-        this.materialSideE.setTexture(this.right);
-        this.materialSideE.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
+        this.materialSide = new CGFappearance(this.scene);
+        this.materialSide.setAmbient(0.1, 0.1, 0.1, 1);
+        this.materialSide.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.materialSide.setSpecular(0.1, 0.1, 0.1, 1);
+        this.materialSide.setShininess(10.0);
+        this.materialSide.setEmission(0.9, 0.9, 0.9, 1);
+        this.materialSide.setTexture(this.side);
+        this.materialSide.setTextureWrap('REPEAT', 'REPEAT');
+    
     }
-    */
+    
     displayOnFall() {
         
         // ZX face (higher Y) TOP
@@ -83,7 +44,7 @@ class MyUnitCubeQuad2 extends CGFobject {
         this.scene.rotate(90*Math.PI/180,1,0,0);
         this.scene.translate(0, 0, -0.5);
         this.scene.scale(-1, -1, 1); //Fixed invert
-        // this.materialTop.apply();
+        this.materialTop.apply();
         this.quad.display();
         this.scene.popMatrix();
 
@@ -94,7 +55,6 @@ class MyUnitCubeQuad2 extends CGFobject {
         this.scene.translate(0, 0, 0.5);
         this.scene.scale(1, 1, -1);
         this.scene.scale(-1, 1, 1); //Fixed invert
-        // this.materialBottom.apply();
         this.quad.display();
         this.scene.popMatrix();
 
@@ -102,7 +62,7 @@ class MyUnitCubeQuad2 extends CGFobject {
         this.scene.pushMatrix();
         this.scene.scale(0.5,0.5,0.5);
         this.scene.translate(0, 0, -0.5);
-        // this.materialSideS.apply();
+        this.materialSide.apply();
         this.quad.display();
         this.scene.popMatrix();
         
@@ -111,7 +71,6 @@ class MyUnitCubeQuad2 extends CGFobject {
         this.scene.scale(0.5,0.5,0.5);
         this.scene.translate(0, 0, 0.5);
         this.scene.scale(-1, 1, -1); // Needed because texture was outside the cube and inverted
-        // this.materialSideN.apply();
         this.quad.display();
         this.scene.popMatrix();
 
@@ -120,7 +79,6 @@ class MyUnitCubeQuad2 extends CGFobject {
         this.scene.scale(0.5,0.5,0.5);
         this.scene.rotate(90*Math.PI/180,0,1,0);
         this.scene.translate(0, 0, -0.5);
-        // this.materialSideE.apply();
         this.quad.display();
         this.scene.popMatrix();
 
@@ -130,7 +88,6 @@ class MyUnitCubeQuad2 extends CGFobject {
         this.scene.rotate(90*Math.PI/180,0,1,0);
         this.scene.translate(0, 0, 0.5);
         this.scene.scale(-1, 1, -1); // Needed because texture was outside the cube and inverted
-        // this.materialSideW.apply();
         this.quad.display();
         this.scene.popMatrix();
     }
@@ -144,7 +101,7 @@ class MyUnitCubeQuad2 extends CGFobject {
         this.scene.translate(0, 0, 0.5);
         this.scene.scale(1, 1, -1);
         this.scene.scale(-1, 1, 1); //Fixed invert
-        // this.materialBottom.apply();
+        this.materialTop.apply();
         this.quad.display();
         this.scene.popMatrix();
 
@@ -154,7 +111,6 @@ class MyUnitCubeQuad2 extends CGFobject {
         this.scene.translate(0, -0.5, -0.5);
         this.scene.rotate(-openingAngle*Math.PI/180,1,0,0); // rotation angle
         this.scene.translate(0, 0.5, 0);
-        // this.materialSideS.apply();
         this.quad.display();
         this.scene.popMatrix();
         
@@ -165,7 +121,6 @@ class MyUnitCubeQuad2 extends CGFobject {
         this.scene.rotate(openingAngle*Math.PI/180,1,0,0); // rotation angle
         this.scene.scale(-1, 1, -1); // Needed because texture was outside the cube and inverted
         this.scene.translate(0, 0.5, 0);
-        // this.materialSideN.apply();
         this.quad.display();
         this.scene.popMatrix();
 
@@ -177,7 +132,6 @@ class MyUnitCubeQuad2 extends CGFobject {
         this.scene.rotate(90*Math.PI/180,0,1,0);
         this.scene.translate(0, 0.5, 0);
         // this.scene.translate(0, 0, -0.5);
-        // this.materialSideE.apply();
         this.quad.display();
         this.scene.popMatrix();
 
@@ -189,7 +143,6 @@ class MyUnitCubeQuad2 extends CGFobject {
         this.scene.rotate(90*Math.PI/180,0,1,0);
         this.scene.translate(0, 0.5, 0);
         this.scene.scale(-1, 1, -1); // Needed because texture was outside the cube and inverted
-        // this.materialSideW.apply();
         this.quad.display();
         this.scene.popMatrix();
     }
