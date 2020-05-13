@@ -16,7 +16,6 @@ class MySupply extends CGFobject {
     constructor(scene) {
 		super(scene);
         
-
         this.cube = new MyUnitCubeQuad2(this.scene);
 
         this.x_;

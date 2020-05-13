@@ -93,9 +93,11 @@ class MyScene extends CGFscene {
     
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
-        //To be done...
+        
         for (var i = 0; i < 5; i++) this.supplyDrops[i].update(t);
+        
         this.vehicle.update(t);
+        
         this.checkKeys();
 
         if (this.prevUpdate == 0) {
@@ -129,7 +131,7 @@ class MyScene extends CGFscene {
         } while (currentDate - date < milliseconds);
     }
 
-
+    /*
     sleep(milliseconds) {
         var timeStart = new Date().getTime();
         while (true) {
@@ -139,6 +141,7 @@ class MyScene extends CGFscene {
             }
         }
     }
+    */
 
     checkKeys() {
         var text = "Keys pressed: ";
@@ -158,10 +161,8 @@ class MyScene extends CGFscene {
             }
             keysPressed = true;
             
-            this.sleep(250);    // to avoid double/multiple pressing of P in less than 250 ms
+            this.sleep(100);    // to avoid double/multiple pressing of P in less than 100 ms
         }
-
-
 
         if (this.gui.isKeyPressed("KeyL") && !this.supplyOnCooldown && this.suppliesDropped < 5) {
             
@@ -245,9 +246,10 @@ class MyScene extends CGFscene {
         ];
 
         if (this.displayCubeMap) {
+            this.pushMatrix();
             this.cubeMap.display();
+            this.popMatrix();
         }
-
 
         if (this.displaySphere) {
             this.pushMatrix();
@@ -266,7 +268,6 @@ class MyScene extends CGFscene {
             this.multMatrix(sca); // Vehicle can be scaled with the slider
             this.translate(this.vehicle.x, this.vehicle.y + 10, this.vehicle.z);
             this.rotate(this.vehicle.horizAngle * Math.PI / 180.0, 0, 1, 0);
-            // this.translate(0, 10, 0);
             this.vehicle.display();
             this.popMatrix();
         }
@@ -282,7 +283,7 @@ class MyScene extends CGFscene {
         this.popMatrix();
 
         this.pushMatrix();
-        this.translate(-2, 2.0, -10.0);
+        this.translate(-2, 1.4, -10.0);
         this.billboard.display();
         this.popMatrix();
 
