@@ -8,7 +8,7 @@ uniform int suppliesDropped;
 
 void main() {
 
-    // upperLimit = 0.5;
+    // upperLimit = 0.51;
     // lowerLimit = -0.5;
 
     float limit = -0.5 + float(suppliesDropped) * ((0.51-(-0.5))/5.0);
