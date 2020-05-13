@@ -7,10 +7,10 @@ class MyBillboard extends CGFobject {
     constructor(scene) {
         super(scene);
 
-        this.boardFront = new MyPlane(this.scene, 40);
-        this.boardBack = new MyPlane(this.scene, 40);
+        this.boardFront = new MyPlane(this.scene, 10);
+        this.boardBack = new MyPlane(this.scene, 10);
         this.support = new MyQuad(this.scene);
-        this.progressBar = new MyPlane(this.scene, 30);
+        this.progressBar = new MyPlane(this.scene, 10);
 
         this.initMaterials();
         this.initShaders();
@@ -21,21 +21,21 @@ class MyBillboard extends CGFobject {
         this.frontAppearance.setAmbient(0.1, 0.1, 0.1, 1);
         this.frontAppearance.setDiffuse(0.9, 0.9, 0.9, 1);
         this.frontAppearance.setShininess(10.0);
-        this.frontAppearance.loadTexture('images/billboardFront.png');
+        this.frontAppearance.loadTexture('images/billboard/billboardFront.png');
         this.frontAppearance.setTextureWrap('REPEAT', 'REPEAT');
 
         this.backAppearance = new CGFappearance(this.scene);
         this.backAppearance.setAmbient(0.1, 0.1, 0.1, 1);
         this.backAppearance.setDiffuse(0.9, 0.9, 0.9, 1);
         this.backAppearance.setShininess(10.0);
-        this.backAppearance.loadTexture('images/billboardBack.png');
+        this.backAppearance.loadTexture('images/billboard/billboardBack.png');
         this.backAppearance.setTextureWrap('REPEAT', 'REPEAT');
 
         this.steelAppearance = new CGFappearance(this.scene);
         this.steelAppearance.setAmbient(0.1, 0.1, 0.1, 1);
-        this.steelAppearance.setDiffuse(0.1, 0.1, 0.1, 1);
+        this.steelAppearance.setDiffuse(0.9, 0.9, 0.9, 1);
         this.steelAppearance.setShininess(10.0);
-        this.steelAppearance.loadTexture('images/steel.png');
+        this.steelAppearance.loadTexture('images/billboard/steel.png');
         this.steelAppearance.setTextureWrap('REPEAT', 'REPEAT');
     }
 
@@ -96,9 +96,6 @@ class MyBillboard extends CGFobject {
         this.scene.scale(0.2, 1, 1);
         this.support.display();
         this.scene.popMatrix();
-
-
     }
-
 
 }
