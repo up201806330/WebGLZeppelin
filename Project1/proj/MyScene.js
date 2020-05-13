@@ -97,8 +97,6 @@ class MyScene extends CGFscene {
         for (var i = 0; i < 5; i++) this.supplyDrops[i].update(t);
         
         this.vehicle.update(t);
-        
-        this.checkKeys();
 
         if (this.prevUpdate == 0) {
             this.prevUpdate = t;
@@ -112,6 +110,8 @@ class MyScene extends CGFscene {
             this.prevUpdate = 0;
             this.supplyOnCooldown = false;
         }
+
+        this.checkKeys();
     }
 
     updateNumberSides() {
