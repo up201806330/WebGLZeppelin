@@ -38,9 +38,8 @@ class MyFlag extends CGFobject {
 
     update(t, s) {
         this.scene.vehicle.flagSide1.setUniformsValues({ timeFactor: t });
-        this.scene.vehicle.flagSide1.setUniformsValues({ flagSpeed: s });
-
         this.scene.vehicle.flagSide2.setUniformsValues({ timeFactor: t });
+        this.scene.vehicle.flagSide1.setUniformsValues({ flagSpeed: s });
         this.scene.vehicle.flagSide2.setUniformsValues({ flagSpeed: s });
     }
 
@@ -71,7 +70,7 @@ class MyFlag extends CGFobject {
         this.scene.pushMatrix();
         this.ropeAppearance.apply();
         this.scene.setActiveShader(this.scene.defaultShader);
-        this.scene.translate(0, 0.1, 0.40);
+        this.scene.translate(0, 0.1, 0.415);
         this.scene.scale(1.0, 0.03, 1.0);
         this.scene.rotate(90 * Math.PI/180, 0, 1, 0);
         this.cable.display();
@@ -80,7 +79,7 @@ class MyFlag extends CGFobject {
         this.scene.pushMatrix();
         this.ropeAppearance.apply();
         this.scene.setActiveShader(this.scene.defaultShader);
-        this.scene.translate(0, -0.1, 0.40);
+        this.scene.translate(0, -0.1, 0.415);
         this.scene.scale(1.0, 0.03, 1.0);
         this.scene.rotate(90 * Math.PI/180, 0, 1, 0);
         this.cable.display();
