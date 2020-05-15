@@ -225,7 +225,7 @@ class MyVehicle extends CGFobject {
             this.x = -5*Math.cos(this.horizAngle * Math.PI / 180) + this.xCenter;
             this.z = 5*Math.sin(this.horizAngle * Math.PI / 180) + this.zCenter;
         }
-        else {
+        else if (this.scene.vehicleCanMove) {
             this.x += this.speed * Math.sin(this.horizAngleRad);
             this.z += this.speed * Math.cos(this.horizAngleRad);
         }

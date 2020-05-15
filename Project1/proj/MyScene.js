@@ -47,7 +47,7 @@ class MyScene extends CGFscene {
         this.speedFactor = 1;
         this.selectedTexture = 0;
         this.textureIds = { 'Earth': 0, 'Space': 1};
-        
+        this.vehicleCanMove = true;
         
         this.onAutoPilot = false;
         this.suppliesDropped = 0;
