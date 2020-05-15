@@ -48,7 +48,7 @@ class MyInterface extends CGFinterface {
         // Slider element in GUI for the vehicle's speedFactor
         this.gui.add(this.scene, 'speedFactor', 0.1, 3).name('Speed Factor');
 
-        // Checkox element in GUI to toggle normals' display
+        // Checkox element in GUI to toggle vehicle movement (x and z axis)
         this.gui.add(this.scene, 'vehicleCanMove').name("Allow Movement");
 
         this.initKeys();
