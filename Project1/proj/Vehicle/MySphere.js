@@ -16,7 +16,6 @@ class MySphere extends CGFobject {
   /**
    * @method initBuffers
    * Initializes the sphere buffers
-   * TODO: DEFINE TEXTURE COORDINATES
    */
   initBuffers() {
     this.vertices = [];
@@ -31,7 +30,6 @@ class MySphere extends CGFobject {
     var latVertices = this.longDivs + 1;
 
 
-
     // build an all-around stack at a time, starting on "north pole" and proceeding "south"
     for (let latitude = 0; latitude <= this.latDivs; latitude++) {
       var sinPhi = Math.sin(phi);
@@ -40,6 +38,7 @@ class MySphere extends CGFobject {
       // in each stack, build all the slices around, starting on longitude 0
       theta = 0;
       for (let longitude = 0; longitude <= this.longDivs; longitude++) {
+
         //--- Vertices coordinates
         var x = Math.cos(theta) * sinPhi;
         var y = cosPhi;
@@ -67,10 +66,7 @@ class MySphere extends CGFobject {
         theta += thetaInc;
 
         //--- Texture Coordinates
-        // To be done... 
-        // May need some additional code also in the beginning of the function.
-        // (DONE! ... I think)
-        this.texCoords.push(longitude/this.longDivs, latitude/this.latDivs);
+        this.texCoords.push(longitude / this.longDivs, latitude / this.latDivs);
         
       }
       phi += phiInc;

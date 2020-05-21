@@ -2,12 +2,11 @@ class MyCylinder extends CGFobject {
 
     constructor(scene, slices, radius) {
         super(scene);
-        this.longDivs = slices;
+        this.slices = slices;
         this.radius = radius;
     
         this.initBuffers();
     }
-
 
     initBuffers() {
 
@@ -17,30 +16,18 @@ class MyCylinder extends CGFobject {
         this.texCoords = [];
         
         var theta = 0;
-        var thetaInc = (2 * Math.PI) / this.longDivs;
-        var tex = 0;
-        var texInc = 1 / this.longDivs; // dividing the 1 ("whole dimension") by the number of sides it'll need to cover
+        var thetaInc = (2 * Math.PI) / this.slices; // dividing the 2*PI (360 degrees) by the number of sides
 
-        // console.log("Pi/6   : " + Math.PI/6);
-        // console.log("Pi/3   : " + Math.PI/3);
-        // console.log("Pi/2   : " + Math.PI/2);
-        // console.log("2*Pi/3 : " + 2*Math.PI/3);
-        // console.log("5*Pi/6 : " + 5*Math.PI/6);
-        // console.log("Pi     : " + Math.PI);
-        // console.log("3*Pi/2 : " + 3*Math.PI/2);
-        // console.log("2*Pi   : " + 2*Math.PI);
+        var texture = 0;
+        var textureInc = 1 / this.slices; // dividing the 1 ("whole dimension") by the number of sides it'll need to cover
         
-        for (let longitude = 0; longitude <= this.longDivs; longitude++) {
-            
-            // console.log("Theta: " + theta);
+        
+        for (let longitude = 0; longitude <= this.slices; longitude++) {
 
             //--- Vertices coordinates
             var x = - Math.cos(theta);
             var z = + Math.sin(theta);
 
-            // console.log("x: " + x);
-            // console.log("z: " + z);
-            // console.log("...");
             this.vertices.push(x, 0, z);
             this.vertices.push(x, 1, z);
             
@@ -54,21 +41,14 @@ class MyCylinder extends CGFobject {
             //--- Normals
             this.normals.push(x, 0, z);
             this.normals.push(x, 0, z);
-            // DOUBT é suposto as normais estarem paralelas
-            // às bases (que não existem) do cilindro?
 
             //--- Texture Coordinates
-            // DOUBT é suposto ser uma coisa deste género?
-            this.texCoords.push(tex, 1);
-            this.texCoords.push(tex, 0);
+            this.texCoords.push(texture, 1);
+            this.texCoords.push(texture, 0);
 
-            
             theta += thetaInc;
-            tex += texInc;
+            texture += textureInc;
         }
-
-        // console.log("Size of vertices array: " + this.vertices.length);
-        // console.log("Number of vertices    : " + this.vertices.length / 3);
 
         this.primitiveType = this.scene.gl.TRIANGLES;
         this.initGLBuffers();
@@ -76,7 +56,7 @@ class MyCylinder extends CGFobject {
 
 
     updateBuffers(complexity){ 
-        this.longDivs = complexity;
+        this.slices = complexity;
         this.initBuffers();
         this.initNormalVizBuffers();
     }
