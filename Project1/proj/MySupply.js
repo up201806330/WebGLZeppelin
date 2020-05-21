@@ -28,20 +28,20 @@ class MySupply extends CGFobject {
         
     }
 
+    // called when the supply crate drop key is pressed
     drop(x,y,z) {
         this.x_ = x;
         this.y_ = y;
         this.z_ = z;
         this.yStart = y;
         this.state = SupplyStates.FALLING;
-
-        // check if it makes sense:
-        this.fallSpeed = this.yStart / 3000;
+        this.fallSpeed = this.yStart / 3000; // v = s / t
     }
 
+    // called when the supply crate hits the ground
     land() { this.state = SupplyStates.LANDED; }
 
-    // call in MyScene in update(t) 
+    // called in MyScene in update(t)
     update(t) {
         
         if (this.prevUpdate == 0) {
@@ -57,9 +57,12 @@ class MySupply extends CGFobject {
             // update y
             this.y_ = ( (this.y_ - deltaY) < FLOOR) ? FLOOR : this.y_ - deltaY;
             
+            // check if the center of the crate has hit y=0.25 which means that
+            // the bottom of the crate is at y=0.0
             if (this.y_ == FLOOR) this.land();
         }
 
+        // rotation update of the crate sides
         else if (this.state == SupplyStates.LANDED && this.openAnimationAngle < 90) {
             this.openAnimationAngle += 5;
         }
