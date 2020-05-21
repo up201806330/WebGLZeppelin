@@ -27,7 +27,6 @@ class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.sphere = new MySphere(this, 16, 8);
-        // this.cylinder = new MyCylinder(this, 4, 1);  <-- declaration a bit ahead after the numberOfSides var
         this.vehicle = new MyVehicle(this);
         this.billboard = new MyBillboard(this);
         this.supplyDrops = [];
@@ -63,7 +62,6 @@ class MyScene extends CGFscene {
         this.sphereMaterial.setSpecular(0.1, 0.1, 0.1, 1);
         this.sphereMaterial.setShininess(10.0);
         this.sphereMaterial.loadTexture('images/earth.jpg');
-        // this.sphereMaterial.setTextureWrap( 'REPEAT','CLAMP_TO_EDGE'); <-- dont think this is needed in this case maybe (found it in TP04 - MyScene)
 
         this.cubeMap = new MyUnitCubeQuad(this);
         this.terrain = new MyTerrain(this);
@@ -131,18 +129,6 @@ class MyScene extends CGFscene {
         } while (currentDate - date < milliseconds);
     }
 
-    /*
-    sleep(milliseconds) {
-        var timeStart = new Date().getTime();
-        while (true) {
-            let elapsedTime = new Date().getTime() - timeStart;
-            if (elapsedTime > milliseconds) {
-                break;
-            }
-        }
-    }
-    */
-
     checkKeys() {
         var text = "Keys pressed: ";
         var keysPressed = false;
@@ -169,7 +155,7 @@ class MyScene extends CGFscene {
             text += " L ";
             
             this.supplyDrops[this.suppliesDropped++].drop(this.vehicle.x, this.vehicle.y + 9.14, this.vehicle.z);
-            // console.log(this.suppliesDropped);
+
             this.billboard.update();
             
             this.supplyOnCooldown = true;
@@ -210,14 +196,6 @@ class MyScene extends CGFscene {
             this.billboard.reset();
             keysPressed = true;
         }
-
-
-        if (keysPressed) {
-            // console.log(text);
-            //this.vehicle.update();
-        }
-
-        // this.vehicle.update();
     }
 
     display() {
