@@ -16,12 +16,12 @@ class MyFlag extends CGFobject {
 
         // Flag Appearance
         this.flagAppearance = new CGFappearance(this.scene);
-        this.flagTexture = new CGFtexture(scene, 'images/ThisIsFine.png');
+        this.flagTexture = new CGFtexture(scene, 'images/flag/ThisIsFine.png');
         this.flagAppearance.setAmbient(0.9, 0.9, 0.9, 1);
         this.flagAppearance.setDiffuse(0.9, 0.9, 0.9, 1);
         this.flagAppearance.setSpecular(0.1, 0.1, 0.1, 1);
         this.flagAppearance.setShininess(10.0);
-        this.flagAppearance.loadTexture('images/ThisIsFine.png');
+        this.flagAppearance.loadTexture('images/flag/ThisIsFine.png');
         this.flagAppearance.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
         // this.flagAppearance.setTextureWrap('REPEAT', 'REPEAT');
 
@@ -31,7 +31,7 @@ class MyFlag extends CGFobject {
         this.ropeAppearance.setDiffuse(0.9, 0.9, 0.9, 1);
         this.ropeAppearance.setSpecular(0.1, 0.1, 0.1, 1);
         this.ropeAppearance.setShininess(10.0);
-        this.ropeAppearance.loadTexture('images/rope2.png');
+        this.ropeAppearance.loadTexture('images/flag/rope.png');
         this.ropeAppearance.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
     }

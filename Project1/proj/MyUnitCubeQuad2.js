@@ -11,10 +11,10 @@ class MyUnitCubeQuad2 extends CGFobject {
         this.initCubeMaterials();
     }
 
-    
+
     initCubeMaterials(){
-        this.top     = new CGFtexture(this.scene, 'images/crateTop.png');
-        this.side        = new CGFtexture(this.scene, 'images/crateSide.png');
+        this.top = new CGFtexture(this.scene, 'images/crate/crateTop.png');
+        this.side = new CGFtexture(this.scene, 'images/crate/crateSide.png');
 
         this.materialTop = new CGFappearance(this.scene);
         this.materialTop.setAmbient(0.1, 0.1, 0.1, 1);
@@ -33,7 +33,6 @@ class MyUnitCubeQuad2 extends CGFobject {
         this.materialSide.setEmission(0.9, 0.9, 0.9, 1);
         this.materialSide.setTexture(this.side);
         this.materialSide.setTextureWrap('REPEAT', 'REPEAT');
-    
     }
     
     displayOnFall() {
