@@ -79,7 +79,7 @@ class MyScene extends CGFscene {
     }
 
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(25, 25, 25), vec3.fromValues(0, 8, 0));
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(25, 20, 25), vec3.fromValues(0, 8, 0));
     }
 
     setDefaultAppearance() {
@@ -261,7 +261,8 @@ class MyScene extends CGFscene {
         this.popMatrix();
 
         this.pushMatrix();
-        this.translate(-2, 1.4, -10.0);
+        this.rotate(Math.PI / 2, 0, 1, 0);
+        this.translate(-8, 5, 1);
         this.billboard.display();
         this.popMatrix();
 
