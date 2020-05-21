@@ -5,6 +5,7 @@ const SupplyStates = {
 };
 
 const FLOOR = 0.25;
+const DROP_TIME_IN_MS = 3000;
 
 /**
  * MyVehicle
@@ -18,24 +19,24 @@ class MySupply extends CGFobject {
         
         this.cube = new MyUnitCubeQuad2(this.scene);
 
-        this.x_;
-        this.y_;
-        this.z_;
+        this.xCrate;
+        this.yCrate;
+        this.zCrate;
         this.yStart;
         this.fallSpeed;
         this.openAnimationAngle = 0;
         this.state = SupplyStates.INACTIVE;
-        
     }
 
     // called when the supply crate drop key is pressed
     drop(x,y,z) {
-        this.x_ = x;
-        this.y_ = y;
-        this.z_ = z;
+        this.xCrate = x;
+        this.yCrate = y;
+        this.zCrate = z;
+
         this.yStart = y;
         this.state = SupplyStates.FALLING;
-        this.fallSpeed = this.yStart / 3000; // v = s / t
+        this.fallSpeed = this.yStart / DROP_TIME_IN_MS; // v = s / t
     }
 
     // called when the supply crate hits the ground
@@ -55,26 +56,26 @@ class MySupply extends CGFobject {
             var deltaY = elapsed * this.fallSpeed;
             
             // update y
-            this.y_ = ( (this.y_ - deltaY) < FLOOR) ? FLOOR : this.y_ - deltaY;
+            this.yCrate = ( (this.yCrate - deltaY) < FLOOR) ? FLOOR : this.yCrate - deltaY;
             
             // check if the center of the crate has hit y=0.25 which means that
             // the bottom of the crate is at y=0.0
-            if (this.y_ == FLOOR) this.land();
+            if (this.yCrate == FLOOR) this.land();
         }
 
         // rotation update of the crate sides
         else if (this.state == SupplyStates.LANDED && this.openAnimationAngle < 90) {
             this.openAnimationAngle += 5;
         }
-        
     }
 
     display() {
         this.scene.pushMatrix();
-        this.scene.translate(this.x_, this.y_, this.z_);
+        this.scene.translate(this.xCrate, this.yCrate, this.zCrate);
 
         if (this.state == SupplyStates.FALLING) { this.cube.displayOnFall(); }
         else if (this.state == SupplyStates.LANDED) { this.cube.displayOnLanded(this.openAnimationAngle); }
+        
         this.scene.popMatrix();
     }
 

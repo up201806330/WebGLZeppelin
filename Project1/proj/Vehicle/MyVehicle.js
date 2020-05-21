@@ -165,9 +165,6 @@ class MyVehicle extends CGFobject {
             this.vertWingRotation = (this.vertWingRotation + this.rotA > this.maxAnglePropeller) ? this.maxAnglePropeller : this.vertWingRotation + this.rotA;
         }
         this.scene.rotate( -this.vertWingRotation * Math.PI / 180, 0, 1, 0);
-        // if (Math.abs(this.horizAngle) >= this.maxAnglePropeller && this.horizAngle > 0) this.scene.rotate( (-this.maxAnglePropeller-90) * Math.PI / 180, 0, 1, 0);
-        // else if (Math.abs(this.horizAngle) >= this.maxAnglePropeller && this.horizAngle < 0) this.scene.rotate( (this.maxAnglePropeller-90) * Math.PI / 180, 0, 1, 0);
-        // else this.scene.rotate( (-this.horizAngle-90) * Math.PI / 180, 0, 1, 0);
 
         this.rotD = 0; this.rotA = 0; // reseting "deltas"
 
@@ -211,7 +208,6 @@ class MyVehicle extends CGFobject {
 
         // console.log("Elapsed: " + elapsed);
 
-        this.horizAngleRad = this.horizAngle * Math.PI / 180;
         this.signSpeed = this.speed > 0 ? 0 : 1;
         this.rotationAngleIncrement = (-1)**(this.signSpeed) * ((Math.abs(60 * this.speed * Math.PI / 180) < this.rotationAngleIncCap) ? Math.abs(60 * this.speed * Math.PI / 180) : this.rotationAngleIncCap);
         this.propellerRotationAngle += this.rotationAngleIncrement;
@@ -226,8 +222,8 @@ class MyVehicle extends CGFobject {
             this.z = 5*Math.sin(this.horizAngle * Math.PI / 180) + this.zCenter;
         }
         else if (this.scene.vehicleCanMove) {
-            this.x += this.speed * Math.sin(this.horizAngleRad);
-            this.z += this.speed * Math.cos(this.horizAngleRad);
+            this.x += this.speed * Math.sin(this.horizAngle * Math.PI / 180);
+            this.z += this.speed * Math.cos(this.horizAngle * Math.PI / 180);
         }
 
         if (this.vertWingRotation != 0 && this.rotD == 0 && this.rotA == 0) {
@@ -268,9 +264,10 @@ class MyVehicle extends CGFobject {
         this.rotD = 0;
         this.rotA = 0;
         this.vertWingRotation = 0;
+
+        this.autoPilot();
     }
 
-    
     autoPilot() {
         var startAngle = (this.horizAngle + 90) * Math.PI / 180;
         this.xCenter = this.x + 5 * Math.sin(startAngle);
