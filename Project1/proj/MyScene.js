@@ -42,6 +42,7 @@ class MyScene extends CGFscene {
         this.displayNormals = false;
         this.displayVehicle = true;
         this.displayCubeMap = true;
+        this.displayTerrain = true;
         this.scaleFactor = 1;
         this.speedFactor = 1;
         this.selectedTexture = 0;
@@ -55,6 +56,13 @@ class MyScene extends CGFscene {
         this.currentWait = 0;
 
         this.cylinder = new MyCylinder(this, this.numberOfSides, 1);
+
+        this.cylinderMaterial = new CGFappearance(this);
+        this.cylinderMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+        this.cylinderMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.cylinderMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+        this.cylinderMaterial.setShininess(10.0);
+        this.cylinderMaterial.loadTexture('images/brickWall.jpg');
 
         this.sphereMaterial = new CGFappearance(this);
         this.sphereMaterial.setAmbient(0.1, 0.1, 0.1, 1);
@@ -239,7 +247,12 @@ class MyScene extends CGFscene {
         if (this.displayNormals) this.cylinder.enableNormalViz();
         else this.cylinder.disableNormalViz();
 
-        if (this.displayCylinder) this.cylinder.display();
+        if (this.displayCylinder) {
+            this.pushMatrix();
+            this.cylinderMaterial.apply();
+            this.cylinder.display();
+            this.popMatrix();
+        }
 
         if (this.displayVehicle) {
             this.pushMatrix();
@@ -255,10 +268,12 @@ class MyScene extends CGFscene {
         for (var i = 0; i < 5; i++) this.supplyDrops[i].display();
         this.popMatrix();
         
-        this.pushMatrix();
-        this.translate(0, -0.48, 0);
-        this.terrain.display();
-        this.popMatrix();
+        if (this.displayTerrain) {
+            this.pushMatrix();
+            this.translate(0, -0.48, 0);
+            this.terrain.display();
+            this.popMatrix();
+        }
 
         this.pushMatrix();
         this.rotate(Math.PI / 2, 0, 1, 0);
@@ -270,5 +285,3 @@ class MyScene extends CGFscene {
         // ---- END Primitive drawing section
     }
 }
-
-// TODO With new lighting, wings have lighting bug

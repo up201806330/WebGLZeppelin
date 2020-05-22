@@ -25,7 +25,11 @@ class MyInterface extends CGFinterface {
         // Checkbox element in GUI for Cylinder Displaying
         this.gui.add(this.scene, 'displayCylinder').name('Display Cylinder');
 
+        // Checkbox element in GUI for Cube Map Displaying
         this.gui.add(this.scene, 'displayCubeMap').name('Display Cube Map');
+
+        // Checkbox element in GUI for Terrain Displaying
+        this.gui.add(this.scene, 'displayTerrain').name('Display Terrain');
 
         // Checkbox element in GUI for Vehicle Displaying
         this.gui.add(this.scene, 'displayVehicle').name('Display Vehicle');
