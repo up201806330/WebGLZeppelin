@@ -1,3 +1,5 @@
+const ROTATION_PERIOD = 5000.0;
+
 /**
  * MyVehicle
  * @constructor
@@ -137,17 +139,10 @@ class MyVehicle extends CGFobject {
         // Bottom Wing
         this.scene.pushMatrix();
         this.scene.translate(0, -0.15, -0.65);
-        // console.log(this.vertWingRotation);
         this.scene.rotate(-90*Math.PI / 180, 0, 1, 0);
-        if (this.rotD != 0) {
-            this.vertWingRotation = (Math.abs(this.vertWingRotation + this.rotD) > this.maxAnglePropeller) ? -this.maxAnglePropeller : this.vertWingRotation + this.rotD;
-        }
-        else if (this.rotA != 0) {
-            this.vertWingRotation = (this.vertWingRotation + this.rotA > this.maxAnglePropeller) ? this.maxAnglePropeller : this.vertWingRotation + this.rotA;
-        }
-        
+        if (this.rotD != 0) { this.vertWingRotation = (Math.abs(this.vertWingRotation + this.rotD) > this.maxAnglePropeller) ? -this.maxAnglePropeller : this.vertWingRotation + this.rotD; }
+        else if (this.rotA != 0) { this.vertWingRotation = (this.vertWingRotation + this.rotA > this.maxAnglePropeller) ? this.maxAnglePropeller : this.vertWingRotation + this.rotA; }
         this.scene.rotate( -this.vertWingRotation * Math.PI / 180, 0, 1, 0);
-
         this.scene.scale(0.3, 0.3, -0.3);
         this.scene.translate(-2, 0, 0);
         this.steeringVert.display();
@@ -156,18 +151,10 @@ class MyVehicle extends CGFobject {
         // Top Wing
         this.scene.pushMatrix();
         this.scene.translate(0, 0.15, -0.65);
-
         this.scene.rotate(-90*Math.PI / 180, 0, 1, 0);
-        if (this.rotD != 0) {
-            this.vertWingRotation = (Math.abs(this.vertWingRotation + this.rotD) > this.maxAnglePropeller) ? -this.maxAnglePropeller : this.vertWingRotation + this.rotD;
-        }
-        else if (this.rotA != 0) {
-            this.vertWingRotation = (this.vertWingRotation + this.rotA > this.maxAnglePropeller) ? this.maxAnglePropeller : this.vertWingRotation + this.rotA;
-        }
+        if (this.rotD != 0) { this.vertWingRotation = (Math.abs(this.vertWingRotation + this.rotD) > this.maxAnglePropeller) ? -this.maxAnglePropeller : this.vertWingRotation + this.rotD; }
+        else if (this.rotA != 0) { this.vertWingRotation = (this.vertWingRotation + this.rotA > this.maxAnglePropeller) ? this.maxAnglePropeller : this.vertWingRotation + this.rotA; }
         this.scene.rotate( -this.vertWingRotation * Math.PI / 180, 0, 1, 0);
-
-        this.rotD = 0; this.rotA = 0; // reseting "deltas"
-
         this.scene.scale(0.3, -0.3, -0.3);
         this.scene.translate(-2, 0, 0);
         this.steeringVert.display();
@@ -178,7 +165,6 @@ class MyVehicle extends CGFobject {
         this.scene.translate(0.17, -0.52, -0.42);
         this.scene.rotate(this.propellerRotationAngle * 1.1, 0, 0, 1);
         this.scene.scale(0.02, 0.12, 0.008);
-        
         this.propeller.display();
         this.scene.popMatrix();
 
@@ -189,13 +175,15 @@ class MyVehicle extends CGFobject {
         this.scene.scale(0.02, 0.12, 0.008);
         this.propeller.display();
         this.scene.popMatrix();
-
         
         // Flag
         this.scene.pushMatrix();
         this.scene.translate(0, 0, -1.8);
         this.flag.display();
         this.scene.popMatrix();
+        
+
+        this.rotD = 0; this.rotA = 0; // reseting "deltas"
     }
 
     update(t) {
@@ -217,9 +205,9 @@ class MyVehicle extends CGFobject {
         // console.log("Angle :" + this.propellerRotationAngle);
 
         if (this.scene.onAutoPilot) {
-            this.turn(360 * elapsed / 5000.0);
-            this.x = -5*Math.cos(this.horizAngle * Math.PI / 180) + this.xCenter;
-            this.z = 5*Math.sin(this.horizAngle * Math.PI / 180) + this.zCenter;
+            this.turn(360 * elapsed / ROTATION_PERIOD);
+            this.x = -5 * Math.cos(this.horizAngle * Math.PI / 180) + this.xCenter;
+            this.z = +5 * Math.sin(this.horizAngle * Math.PI / 180) + this.zCenter;
         }
         else if (this.scene.vehicleCanMove) {
             this.x += this.speed * Math.sin(this.horizAngle * Math.PI / 180);
