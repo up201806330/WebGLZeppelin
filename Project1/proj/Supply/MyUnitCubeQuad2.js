@@ -99,7 +99,7 @@ class MyUnitCubeQuad2 extends CGFobject {
         this.scene.rotate(90*Math.PI/180,1,0,0);
         this.scene.translate(0, 0, 0.5);
         this.scene.scale(1, 1, -1);
-        this.scene.scale(-1, 1, 1); //Fixed invert
+        this.scene.scale(-1, 1, 1); // Fixed invert
         this.materialTop.apply();
         this.quad.display();
         this.scene.popMatrix();
@@ -108,7 +108,7 @@ class MyUnitCubeQuad2 extends CGFobject {
         this.scene.pushMatrix();
         this.scene.scale(0.5,0.5,0.5);
         this.scene.translate(0, -0.5, -0.5);
-        this.scene.rotate(-openingAngle*Math.PI/180,1,0,0); // rotation angle
+        this.scene.rotate(-openingAngle*Math.PI/180,1,0,0); // opening rotation angle
         this.scene.translate(0, 0.5, 0);
         this.quad.display();
         this.scene.popMatrix();
@@ -117,7 +117,7 @@ class MyUnitCubeQuad2 extends CGFobject {
         this.scene.pushMatrix();
         this.scene.scale(0.5,0.5,0.5);
         this.scene.translate(0, -0.5, 0.5);
-        this.scene.rotate(openingAngle*Math.PI/180,1,0,0); // rotation angle
+        this.scene.rotate(openingAngle*Math.PI/180,1,0,0); // opening rotation angle
         this.scene.scale(-1, 1, -1); // Needed because texture was outside the cube and inverted
         this.scene.translate(0, 0.5, 0);
         this.quad.display();
@@ -127,10 +127,9 @@ class MyUnitCubeQuad2 extends CGFobject {
         this.scene.pushMatrix();
         this.scene.scale(0.5,0.5,0.5);
         this.scene.translate(-0.5, -0.5, 0);
-        this.scene.rotate(openingAngle*Math.PI/180,0,0,1); // rotation angle
+        this.scene.rotate(openingAngle*Math.PI/180,0,0,1); // opening rotation angle
         this.scene.rotate(90*Math.PI/180,0,1,0);
         this.scene.translate(0, 0.5, 0);
-        // this.scene.translate(0, 0, -0.5);
         this.quad.display();
         this.scene.popMatrix();
 
@@ -138,7 +137,7 @@ class MyUnitCubeQuad2 extends CGFobject {
         this.scene.pushMatrix();
         this.scene.scale(0.5,0.5,0.5);
         this.scene.translate(0.5, -0.5, 0);
-        this.scene.rotate(-openingAngle*Math.PI/180,0,0,1); // rotation angle
+        this.scene.rotate(-openingAngle*Math.PI/180,0,0,1); // opening rotation angle
         this.scene.rotate(90*Math.PI/180,0,1,0);
         this.scene.translate(0, 0.5, 0);
         this.scene.scale(-1, 1, -1); // Needed because texture was outside the cube and inverted
