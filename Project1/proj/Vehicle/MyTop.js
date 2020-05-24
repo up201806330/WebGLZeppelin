@@ -35,8 +35,6 @@ class MyTop extends CGFobject {
   		    this.texCoords.push(0.5-Math.sin(j*(2*Math.PI)/this.slices)/2);
         }
 
-        
-
         for (let i = 0; i < this.slices - 1; i++) {
             this.indices.push(i, i + 1, this.slices);
         }
@@ -46,8 +44,5 @@ class MyTop extends CGFobject {
         this.primitiveType = this.scene.gl.TRIANGLES;
         this.initGLBuffers();
     }
-
-
-
 
 }
