@@ -1,3 +1,5 @@
 Turma 6 Grupo 2
 João António Cardoso Vieira e Basto de Sousa 201806613
 Rafael Soares Ribeiro                        201806330
+
+Observacoes: todas as funcionalidades foram implementadas e o codigo do projeto encontra-se no ficheiro zip submetido com o nome proj-t6g02-1.zip
