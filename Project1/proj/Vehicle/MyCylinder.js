@@ -33,9 +33,9 @@ class MyCylinder extends CGFobject {
             
             //--- Indices
             if (longitude != 0){
-                this.indices.push((longitude*2), (longitude*2+1), (longitude*2-1));
-                this.indices.push((longitude*2-1), (longitude*2-2), (longitude*2));
-                // this.indices.push((longitude*2), (2*longitude-1), (2*longitude-2)); // -> it works as well instead of the previous one (I think)
+                this.indices.push((longitude * 2), (longitude * 2 + 1), (longitude * 2 - 1));
+                this.indices.push((longitude * 2 - 1), (longitude * 2 - 2), (longitude * 2));
+                // this.indices.push((longitude * 2), (longitude * 2 - 1), (longitude * 2 - 2)); // -> tested it and it works as well instead of the previous one
             }
 
             //--- Normals
