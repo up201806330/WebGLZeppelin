@@ -5,7 +5,7 @@
  */
 class MyTrapeze extends CGFobject {
     constructor(scene) {
-		super(scene);
+	super(scene);
 
         this.trianglePart = new MyTriangle(this.scene);
         this.rectanglePart = new MyQuad(this.scene);
