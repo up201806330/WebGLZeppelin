@@ -100,10 +100,13 @@ class MyScene extends CGFscene {
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
         
+        // Updating supply drops
         for (var i = 0; i < 5; i++) this.supplyDrops[i].update(t);
         
+        // Updating vehicle
         this.vehicle.update(t);
 
+        // Updating time vairables
         if (this.prevUpdate == 0) {
             this.prevUpdate = t;
         }
@@ -140,7 +143,6 @@ class MyScene extends CGFscene {
     checkKeys() {
         var text = "Keys pressed: ";
         var keysPressed = false;
-        // console.log("Autopilot: " + this.onAutoPilot);
         // Check for key codes e.g. in https://keycode.info/
 
         if (this.gui.isKeyPressed("KeyP")) {
@@ -230,13 +232,15 @@ class MyScene extends CGFscene {
             0.0, 0.0, this.scaleFactor, 0.0,
             0.0, 0.0, 0.0, 1.0
         ];
-
+        
+        // Cube Map
         if (this.displayCubeMap) {
             this.pushMatrix();
             this.cubeMap.display();
             this.popMatrix();
         }
 
+        // Sphere
         if (this.displaySphere) {
             this.pushMatrix();
             this.sphereMaterial.apply();
@@ -244,9 +248,11 @@ class MyScene extends CGFscene {
             this.popMatrix();
         }
 
+        // Cylinder Normals
         if (this.displayNormals) this.cylinder.enableNormalViz();
         else this.cylinder.disableNormalViz();
 
+        // Cylinder
         if (this.displayCylinder) {
             this.pushMatrix();
             this.cylinderMaterial.apply();
@@ -254,6 +260,7 @@ class MyScene extends CGFscene {
             this.popMatrix();
         }
 
+        // Vehicle
         if (this.displayVehicle) {
             this.pushMatrix();
             this.multMatrix(sca); // Vehicle can be scaled with the slider
@@ -263,11 +270,13 @@ class MyScene extends CGFscene {
             this.popMatrix();
         }
 
+        // Supply Drops
         this.pushMatrix();
         this.multMatrix(sca);
         for (var i = 0; i < 5; i++) this.supplyDrops[i].display();
         this.popMatrix();
         
+        // Terrain
         if (this.displayTerrain) {
             this.pushMatrix();
             this.translate(0, -0.48, 0);
@@ -275,12 +284,12 @@ class MyScene extends CGFscene {
             this.popMatrix();
         }
 
+        // Billboard
         this.pushMatrix();
         this.rotate(Math.PI / 2, 0, 1, 0);
         this.translate(-8, 5, 1);
         this.billboard.display();
         this.popMatrix();
-
 
         // ---- END Primitive drawing section
     }
