@@ -16,6 +16,9 @@
 ![1](screenshots/proj-t6g02-5.png)
 ![2](screenshots/bla.png)
 ![3](screenshots/proj-t6g02-6.png)
+
+## Gameplay
+
 ![4](screenshots/gif.gif)
 
 ## Controls
