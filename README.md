@@ -11,7 +11,7 @@
     - [João António Cardoso Vieira e Basto de Sousa](https://github.com/JoaoASousa) ([up201806613@fe.up.pt](up201806613@fe.up.pt))
     - [Rafael Soares Ribeiro](https://github.com/up201806330) ([up201806330@fe.up.pt](up201806330@fe.up.pt))
 
-## Media
+## Screenshots
 
 ![1](screenshots/proj-t6g02-5.png)
 ![2](screenshots/bla.png)
