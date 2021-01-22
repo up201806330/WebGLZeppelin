@@ -1,8 +1,8 @@
-# CGRA Project
+# WebGLZeppelin
 
 [Try it out](https://joaoasousa.github.io/CGRA_2Y2S)
 
-- **Project name:** – Final project for CGRA
+- **Project name:** Final project for CGRA
 - **Short description:** Web game consisting of controlling an airship and dropping boxes 
 - **Institution:** [FEUP](https://sigarra.up.pt/feup/en/web_page.Inicial)
 - **Course:** [CGRA](https://sigarra.up.pt/feup/en/ucurr_geral.ficha_uc_view?pv_ocorrencia_id=436438) (Computer Graphics)
